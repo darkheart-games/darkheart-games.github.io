@@ -30,6 +30,7 @@ p {
   line-height: 1.5em;
   padding: 0.8em 0;
   color: rgb(242, 242, 247);
+  text-align: justify;
 }
 
 a {
@@ -155,6 +156,9 @@ main > ul > li {
 }
 
 @media screen and (max-width: 40rem) {
+  header > svg {
+    width: 80%;
+}
   main > ul > li {
     width: 100%;
   }
