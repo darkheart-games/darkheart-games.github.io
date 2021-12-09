@@ -1,2 +1,2 @@
-# darkheart-games.github.io
+# Darkheart Games
 Official Github-Pages Page for Darkheart Games
