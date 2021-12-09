@@ -1,0 +1,82 @@
+* {
+  font-family: monospace;
+}
+body {
+  background-color: var(--colorBody);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--colorText);
+  line-height: 1.5em;
+}
+
+label {
+  color: var(--colorText);
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.wrapper {
+  background-color: var(--colorBodyHighlight);
+}
+.wrapper > h2 {
+  color: var(--colorHeadline);
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: -0.35em;
+}
+.wrapper > div {
+  margin-top: 0.75em;
+  padding: 0 1em;
+  border-top: 2px solid var(--colorBody);
+  overflow-y: auto;
+  max-height: 550px;
+}
+.wrapper > div::-webkit-scrollbar {
+  width: 16px;
+}
+.wrapper > div::-webkit-scrollbar-track {
+  border: 2px solid var(--colorBodyShade);
+  background-color: var(--colorBody);
+}
+.wrapper > div::-webkit-scrollbar-thumb {
+  background-color: var(--colorBodyShade);
+  transition: background-color 0.2s ease-in-out;
+}
+.wrapper > div::-webkit-scrollbar-thumb:hover {
+  background-color: var(--colorBodyShade);
+}
+.text-action--wrapper {
+  margin: 1em 0;
+  padding: 0.75em;
+  background-color: var(--colorBodyShade);
+}
+.text-action--wrapper:last-child {
+  border-bottom: 0;
+}
+.text-action--wrapper > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.text-action--wrapper > div:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.text-action--wrapper > div > p:nth-child(3) {
+  margin: 1em 0;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none !important;
+}

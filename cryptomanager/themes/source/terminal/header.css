@@ -1,0 +1,42 @@
+header {
+  max-width: 60rem;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media screen and (min-width: 70rem) {
+  header {
+    max-width: 100rem;
+  }
+}
+@media screen and (max-width: 40rem) {
+  header {
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+  header > div > button {
+    width: auto;
+    margin: 0;
+    padding: 0.15em 0.4em 0.4em 0.4em;
+    font-weight: 1em;
+  }
+}

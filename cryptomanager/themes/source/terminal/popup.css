@@ -1,0 +1,40 @@
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--colorBody);
+  display: none;
+}
+#popup > div {
+  max-width: 40rem;
+  width: 100%;
+  display: none;
+  padding: 1.5em;
+  background-color: var(--colorBodyHighlight);
+}
+#popup > div > div {
+  margin: 2em 0 0 0;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#popup > div > div > button#popup--reset-game--delete {
+  border: 2px solid var(--colorStatusDanger);
+  background-color: var(--colorStatusDanger);
+}
+#popup > div > div > button#popup--settings--save {
+  border: 2px solid var(--colorStatusSuccess);
+  background-color: var(--colorStatusSuccess);
+}
+
+#popup.show,
+#popup.show > div.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

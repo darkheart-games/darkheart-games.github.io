@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"
+    />
+    <title>Crypto</title>
+    <link href="./css/reset.css" rel="stylesheet" />
+    <script>
+      // load theme
+      const loadThemeFile = (name) => {
+        const fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", `./themes/${name.toLowerCase()}.css`);
+        document.body.appendChild(fileref);
+      };
+
+      const checkTheme = () => {
+        let filename = "Terminal";
+
+        if (localStorage.getItem("SETTINGS") !== null) {
+          const tempSettings = JSON.parse(localStorage.getItem("SETTINGS"));
+
+          if (
+            tempSettings.theme !== null &&
+            tempSettings.theme !== undefined &&
+            tempSettings.theme.length > 0
+          ) {
+            filename = tempSettings.theme;
+          }
+        }
+
+        console.log(filename);
+
+        loadThemeFile(filename);
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        checkTheme();
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="popup">
+      <div id="popup--reset-game">
+        <h2>Delete Gamedata?</h2>
+        <p>
+          Do you really want to reset your game? All your data will be
+          permanently deleted!
+        </p>
+        <div>
+          <button id="popup--reset-game--cancle">Cancle</button>
+          <button id="popup--reset-game--delete">Delete</button>
+        </div>
+      </div>
+      <div id="popup--retire">
+        <h2>Retired</h2>
+        <p>
+          You finished the game.
+        </p>
+        <div>
+          <button id="popup--retire--restart">Restart</button>
+        </div>
+      </div>
+      <div id="popup--settings">
+        <h2>Settings</h2>
+        <div>
+          <div class="form-group">
+            <label for="theme-select">Select Theme:</label>
+            <select name="theme-select" id="popup--settings--selected-theme">
+              <option value="terminal" selected>Terminal</option>
+              <option value="modern">Modern</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button id="popup--settings--cancle">Cancle</button>
+          <button id="popup--settings--save">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <h1>Crypto Manager</h1>
+      <div>
+        <button id="game--save">SAVE</button>
+        <button id="game--reset">RESET</button>
+        <button id="game--settings">SETTINGS</button>
+      </div>
+    </header>
+
+    <main id="screen">
+      <div class="wrapper">
+        <h2>Console</h2>
+        <div id="console"></div>
+      </div>
+      <div class="wrapper">
+        <h2>Status</h2>
+        <div id="status">
+          <div id="info">
+            <p>Char: <span id="info--char">-</span></p>
+            <p>Int: <span id="info--int">-</span></p>
+            <p>Coins: <span id="info--coins">-</span></p>
+            <p>Money: <span id="info--money">--.--</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <h2>Stock</h2>
+        <div id="stock">
+          <div>
+            <svg id="stock--chart" width="100%" height="100%"></svg>
+          </div>
+          <div id="stock--status">
+            <p>Timer:<span id="stock--timer">--</span></p>
+            <p>Sell:<span id="stock--sell">---</span></p>
+            <p>Buy:<span id="stock--buy">--</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <h2>Actions</h2>
+        <div id="actions">
+          <div class="text-action--wrapper">
+            <div>
+              <h3>Buy crypto coins</h3>
+              <p>
+                Buy crypto coins. Buy price is 5% higher than sell price. Check
+                Stock market for current price.
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                min="0"
+                id="action--buy-input"
+                placeholder="Amount"
+              />
+              <button id="action--buy-coin">Buy</button>
+            </div>
+          </div>
+          <div class="text-action--wrapper">
+            <div>
+              <h3>Sell earned crypto coins</h3>
+              <p>
+                Sell your earned crypto coins. Check Stock market for current
+                price.
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                min="0"
+                id="action--sell-input"
+                placeholder="Amount"
+              />
+              <button id="action--sell-coin">Sell</button>
+            </div>
+          </div>
+          <div class="text-action--wrapper">
+            <div>
+              <h3>Search for crypto coins</h3>
+              <p>Search for coins. 20% chance of finding a coin.</p>
+            </div>
+            <div>
+              <button id="action--mine-coin">Mine</button>
+            </div>
+          </div>
+
+          <div
+            id="action--helper-buy-container"
+            class="text-action--wrapper hidden"
+          >
+            <div>
+              <h3>Stock Helper: Auto buy coins</h3>
+              <p>
+                Enter maximal buy price. If everything is setup, turn the auto
+                buyer on. This function will automatically buys all coins you
+                can with the available money. This will happen 1s bevor you get
+                a new stock price!
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                min="0"
+                id="action--helper-buy-input"
+                placeholder="Max price"
+              />
+              <button id="action--helper-buy" disabled="true">Turn On</button>
+            </div>
+          </div>
+          <div
+            id="action--helper-sell-container"
+            class="text-action--wrapper hidden"
+          >
+            <div>
+              <h3>Stock Helper: Auto sell coins</h3>
+              <p>
+                Enter minimal sell price. If everything is setup, turn the auto
+                seller on. This function will automatically sell all coins you
+                have if the sell price is reached. This will happen 1s bevor you
+                get a new stock price!
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                min="0"
+                id="action--helper-sell-input"
+                placeholder="Min price"
+              />
+              <button id="action--helper-sell" disabled="true">
+                Turn On
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <h2>Shop</h2>
+        <div id="shop">
+          <div class="text-action--wrapper">
+            <div>
+              <h3>Auto crypto miner</h3>
+              <p>
+                Automatically searches for coins. 10% chance of finding a coin.
+              </p>
+              <p>Inventory: <span id="equipment--auto-miner">0</span></p>
+            </div>
+            <div>
+              <button id="shop--auto-miner">Buy [<span></span>€]</button>
+              <button id="shop--auto-miner-sell">Sell [<span></span>€]</button>
+            </div>
+          </div>
+          <div class="text-action--wrapper">
+            <div>
+              <h3>Better Auto crypto miner</h3>
+              <p>
+                Automatically searches for coins. 40% chance of finding a coin.
+              </p>
+              <p>Inventory: <span id="equipment--better-auto-miner">0</span></p>
+            </div>
+            <div>
+              <button id="shop--better-auto-miner">Buy [<span></span>€]</button>
+              <button id="shop--better-auto-miner-sell">
+                Sell [<span></span>€]
+              </button>
+            </div>
+          </div>
+          <div class="text-action--wrapper">
+            <div>
+              <h3>High Quality Auto crypto miner</h3>
+              <p>
+                Automatically searches for coins. 90% chance of finding a coin.
+              </p>
+              <p>
+                Inventory:
+                <span id="equipment--highquality-auto-miner">0</span>
+              </p>
+            </div>
+            <div>
+              <button id="shop--highquality-auto-miner">
+                Buy [<span></span>€]
+              </button>
+              <button id="shop--highquality-auto-miner-sell">
+                Sell [<span></span>€]
+              </button>
+            </div>
+          </div>
+
+          <!-- HELPER -->
+          <div id="shop--helper-buy-container" class="text-action--wrapper">
+            <div>
+              <h3>Stock Helper: Auto buy coins</h3>
+              <p>
+                Auto buy coins if a specific buy Price is reached.
+              </p>
+            </div>
+            <div>
+              <button id="shop--helper-buy">Buy [<span></span>€]</button>
+            </div>
+          </div>
+          <div id="shop--helper-sell-container" class="text-action--wrapper">
+            <div>
+              <h3>Stock Helper: Auto sell coins</h3>
+              <p>
+                Auto sell coins if a specific sell Price is reached.
+              </p>
+            </div>
+            <div>
+              <button id="shop--helper-sell">Buy [<span></span>€]</button>
+            </div>
+          </div>
+
+          <!-- INT BOOSTER -->
+          <div id="shop--course-int-container" class="text-action--wrapper">
+            <div>
+              <h3>Online Crypto Course</h3>
+              <p>
+                60% chance of increasing your INT.
+              </p>
+            </div>
+            <div>
+              <button id="shop--course-int">Buy [<span></span>€]</button>
+            </div>
+          </div>
+
+          <!-- CHAR BOOSTER -->
+          <div id="shop--course-char-container" class="text-action--wrapper">
+            <div>
+              <h3>Online Charisma Course</h3>
+              <p>
+                60% chance of increasing your CHAR.
+              </p>
+            </div>
+            <div>
+              <button id="shop--course-char">Buy [<span></span>€]</button>
+            </div>
+          </div>
+
+          <!-- CHAR BOOSTER -->
+          <div id="shop--finish-game-container" class="text-action--wrapper">
+            <div>
+              <h3>Retire</h3>
+              <p>
+                Retire from your crypto manager job.
+              </p>
+            </div>
+            <div>
+              <button id="shop--finish-game">Buy [<span></span>€]</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

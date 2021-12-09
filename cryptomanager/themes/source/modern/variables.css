@@ -1,0 +1,21 @@
+:root {
+  --colorHeadline: #212121;
+  --colorText: #39ff14;
+  --colorBtnDisabled: #ddd;
+  --colorBtnBorderDisabled: #ddd;
+  --colorBtnDanger: crimson;
+  --colorBtnBorderDanger: crimson;
+  --colorBtnSuccess: #39ff14;
+  --colorBtnBorderSuccess: #39ff14;
+  --colorBtnDefault: #212121;
+  --colorBtnBorderDefault: #212121;
+  --colorInput: #fff;
+  --colorInputBorder: #ddd;
+  --colorBody: #efefef;
+  --colorBodyShade: rgb(44, 44, 46);
+  --colorBodyHighlight: #fff;
+  --colorStatusNone: #000;
+  --colorStatusDanger: crimson;
+  --colorStatusSuccess: limegreen;
+  --colorStatusWarning: gold;
+}

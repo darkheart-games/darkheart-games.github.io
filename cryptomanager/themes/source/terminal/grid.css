@@ -1,0 +1,53 @@
+#screen {
+  max-width: 60rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 2em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "status stock"
+    "shop actions"
+    "console console";
+}
+#screen > div:nth-child(1) {
+  grid-area: console;
+}
+#screen > div:nth-child(2) {
+  grid-area: status;
+}
+#screen > div:nth-child(3) {
+  grid-area: stock;
+}
+#screen > div:nth-child(4) {
+  grid-area: actions;
+}
+#screen > div:nth-child(5) {
+  grid-area: shop;
+}
+
+@media screen and (min-width: 70rem) {
+  #screen {
+    max-width: 100rem;
+    gap: 2em;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "status shop actions"
+      "stock shop actions"
+      "console console console";
+  }
+}
+@media screen and (max-width: 48rem) {
+  #screen {
+    gap: 2em;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "status"
+      "stock"
+      "actions"
+      "shop"
+      "console";
+  }
+}

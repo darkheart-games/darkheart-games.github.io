@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+  touch-action: manipulation;
+}
+
+header,
+main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/*
+CODESANDBOX WATERMARK FIX
+*/
+iframe {
+  display: none;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 16px;
+  right: 16px;
+  border: none;
+  width: 118px;
+  height: 36px;
+  z-index: -1 !important;
+}

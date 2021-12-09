@@ -1,0 +1,42 @@
+#console {
+  margin: 1em;
+  padding: 1em;
+  max-height: 260px;
+  border: 3px solid var(--colorBodyShade);
+}
+#console::-webkit-scrollbar-track {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+#console > p {
+  width: 100%;
+  padding: 0.25em;
+  border-top: 1px solid var(--colorBodyShade);
+}
+#console > p:nth-child(1) {
+  border-top: 0;
+}
+#console > p > span {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+.console--info {
+  color: var(--colorStatusNone);
+}
+
+.console--warning {
+  color: var(--colorStatusWarning);
+  font-weight: 700;
+}
+
+.console--success {
+  color: var(--colorStatusSuccess);
+  font-weight: 700;
+}
+
+.console--error {
+  color: var(--colorStatusDanger);
+  font-weight: 700;
+}

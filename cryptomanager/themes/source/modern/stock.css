@@ -1,0 +1,57 @@
+#stock {
+  border-top: 0;
+}
+#stock--chart {
+  border: 2px solid var(--colorBody);
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+#stock--chart > line {
+  stroke-width: 3px;
+}
+#stock--status {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "timer sell buy";
+}
+#stock--status > p {
+  font-size: 1.25em;
+  padding: 1em;
+  background-color: var(--colorInputBorder);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+#stock--status > p > span {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+#stock--status > p:nth-child(1) {
+  grid-area: timer;
+}
+#stock--status > p:nth-child(2) {
+  grid-area: sell;
+}
+#stock--status > p:nth-child(3) {
+  grid-area: buy;
+}
+
+#stock--sell.negative {
+  color: var(--colorStatusDanger);
+}
+#stock--sell.not-changed {
+  color: var(--colorStatusNone);
+}
+#stock--sell.positive {
+  color: var(--colorStatusSuccess);
+}
+
+@media screen and (max-width: 27rem) {
+  #stock {
+    font-size: 0.8em;
+  }
+}

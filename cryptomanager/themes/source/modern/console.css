@@ -1,0 +1,33 @@
+#console {
+  max-height: 237px;
+}
+#console > p {
+  width: 100%;
+  padding: 0.25em;
+}
+#console > p:nth-child(even) {
+  background-color: var(--colorBody);
+}
+#console > p > span {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+.console--info {
+  color: var(--colorStatusNone);
+}
+
+.console--warning {
+  color: var(--colorStatusWarning);
+  font-weight: 700;
+}
+
+.console--success {
+  color: var(--colorStatusSuccess);
+  font-weight: 700;
+}
+
+.console--error {
+  color: var(--colorStatusDanger);
+  font-weight: 700;
+}

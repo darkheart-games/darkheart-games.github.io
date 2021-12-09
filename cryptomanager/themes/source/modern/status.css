@@ -1,0 +1,45 @@
+#status {
+  border-top: 0;
+  height: 100%;
+}
+#info {
+  display: grid;
+  gap: 1em;
+  height: calc(100% - 2em);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "coins money"
+    "char int";
+}
+#info > p {
+  font-size: 1.25em;
+  background-color: var(--colorInputBorder);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+#info > p > span {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+#info > p:nth-child(1) {
+  grid-area: char;
+}
+#info > p:nth-child(2) {
+  grid-area: int;
+}
+#info > p:nth-child(3) {
+  grid-area: coins;
+}
+#info > p:nth-child(4) {
+  grid-area: money;
+}
+
+@media screen and (max-width: 27rem) {
+  #status {
+    font-size: 0.8em;
+  }
+}

@@ -1,0 +1,73 @@
+input,
+select {
+  padding: 0.5em;
+  border: 2px solid var(--colorInputBorder);
+  background-color: var(--colorInput);
+  color: #000;
+  border-radius: 12px;
+  outline: none;
+  font-size: 1em;
+  width: 100%;
+  margin: 1em;
+}
+button {
+  padding: 0.5em;
+  font-weight: 600;
+  margin: 1em;
+  width: 100%;
+  border: 2px solid var(--colorBtnBorderDefault);
+  background-color: var(--colorBtnDefault);
+  color: var(--colorBodyHighlight);
+  border-radius: 12px;
+  font-size: 1em;
+  outline: none;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
+input:focus,
+button:focus {
+  border: 2px solid var(--colorBodyShade);
+}
+button:active {
+  border: 2px solid var(--colorBodyShade);
+}
+button:disabled {
+  border: 2px solid var(--colorBtnBorderDisabled);
+  background-color: var(--colorBtnDisabled);
+  color: var(--colorBodyHighlight);
+  font-weight: 300;
+}
+button:hover {
+  cursor: pointer;
+}
+button:disabled:hover {
+  cursor: not-allowed;
+}
+
+button:first-child,
+input:first-child {
+  margin-left: 0;
+}
+button:last-child,
+input:last-child {
+  margin-right: 0;
+}
+
+select {
+  margin: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.form-group > * {
+  width: 100%;
+  margin: 0.5em 0;
+}
