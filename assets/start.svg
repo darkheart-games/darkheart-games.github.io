@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1080"
+   height="1080"
+   viewBox="0 0 285.75 285.75"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="C:\Users\sieglr\OneDrive - Lenze SE\Desktop\logo.png"
+   inkscape:export-xdpi="44.439999"
+   inkscape:export-ydpi="44.439999"
+   sodipodi:docname="start.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.80833333"
+     inkscape:cx="533.81443"
+     inkscape:cy="615.46392"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="-9"
+     inkscape:window-y="15"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Ebene 2" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Ebene 3">
+    <rect
+       style="fill:#1c1c1e;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       id="rect3901-7-5"
+       width="19.049999"
+       height="19.049999"
+       x="18.755369"
+       y="-57.313927"
+       transform="scale(1,-1)" />
+    <path
+       id="rect4790"
+       style="fill:#5856d6;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       d="M 37.786841,247.8138 V 38.263803 h 38.118603 v 19.05 h 38.118086 v 19.05 h 38.1 v 19.05 h 38.08191 V 114.4638 h 38.1 v 19.05 h 38.1186 v 19.05 h -38.1186 v 19.05 h -38.1 v 28.13472 h -38.08191 v 9.96528 h -38.1 v 19.05 H 75.905444 v 19.05 z" />
+    <path
+       id="rect3901"
+       style="fill:#1c1c1e;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       d="m 37.805444,266.8638 v -19.05 h 38.1 v 19.05 z m 38.1,-19.05 v -19.05 h 38.099996 v 19.05 z m 38.099996,-19.05 v -19.05 h 38.1 v 19.05 z m 38.1,-19.05 v -19.05 h 38.1 v 19.05 z m 38.1,-19.05 v -19.05 h 38.1 v 19.05 z m 38.1,-19.05 v -19.05 h 19.05 v 19.05 z m -209.549996,76.2 V 38.465858 H 37.786841 V 247.8138 Z m 209.549996,-114.3 v -19.05 h 19.05 v 19.05 z m 0,-19.05 h -38.1 V 95.413803 h 38.1 z m -38.1,-19.049997 h -38.1 v -19.05 h 38.1 z m -38.1,-19.05 h -38.1 v -19.05 h 38.1 z m -38.1,-19.05 H 75.905444 v -19.05 h 38.099996 z m -38.099996,-19.05 h -38.1 V 19.213814 h 38.1 z" />
+    <rect
+       style="fill:#f2fff7;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       id="rect5062"
+       width="38.099998"
+       height="19.049999"
+       x="171.15544"
+       y="-152.56381"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#f2fff7;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       id="rect5062-7"
+       width="38.099998"
+       height="19.049999"
+       x="133.05544"
+       y="-133.51381"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#f2fff7;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       id="rect5062-1"
+       width="38.099998"
+       height="19.049999"
+       x="94.955444"
+       y="-114.4638"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#f2fff7;fill-opacity:1;stroke-width:1.05833;stroke-opacity:0.604502"
+       id="rect5062-8"
+       width="38.099998"
+       height="19.049999"
+       x="56.855446"
+       y="-95.413795"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#1c1c1e;fill-opacity:1;stroke-width:0.748352;stroke-opacity:0.604502"
+       id="rect5062-89"
+       width="19.049999"
+       height="19.049999"
+       x="247.35544"
+       y="-152.56381"
+       transform="scale(1,-1)" />
+  </g>
+</svg>
