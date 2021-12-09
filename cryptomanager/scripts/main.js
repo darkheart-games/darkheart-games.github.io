@@ -37,7 +37,7 @@ let SETTINGS = {
 
 let GLOBAL_VALUES = {
   startTimestamp: 0,
-  money: 10000000,
+  money: 10,
   coins: 1,
   int: 0,
   char: 0
