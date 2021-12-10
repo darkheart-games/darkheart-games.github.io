@@ -1038,10 +1038,14 @@ const checkShopPrices = () => {
   }
   // retire
   if (
-    GLOBAL_VALUES.money < GLOBAL_PRICES.retire &&
-    elementShopRetire.disabled === false &&
-    GLOBAL_VALUES.int < SETTINGS.stats.maxInt &&
-    GLOBAL_VALUES.char < SETTINGS.stats.maxChar
+    
+    (GLOBAL_VALUES.money < GLOBAL_PRICES.retire &&
+      elementShopRetire.disabled === false) ||
+    (GLOBAL_VALUES.int < SETTINGS.stats.maxInt &&
+      elementShopRetire.disabled === false) ||
+    (GLOBAL_VALUES.char < SETTINGS.stats.maxChar &&
+      elementShopRetire.disabled === false)
+  )
   ) {
     elementShopRetire.disabled = true;
   } else if (
