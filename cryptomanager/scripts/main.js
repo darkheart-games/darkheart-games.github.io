@@ -1,7 +1,7 @@
 // GAME SETTINGS
 
 let SETTINGS = {
-  theme: "terminal",
+  theme: "monospace",
   lifecycle: 1000,
   priceIncrease: 1.2,
   equipment: {
@@ -869,6 +869,8 @@ const checkAvailableMoney = (costs) => {
 };
 
 const checkAutoMiners = () => {
+  let globalCoins = 0;
+
   if (GLOBAL_EQUIPMENT.autoMiner > 0) {
     let efficiency =
       GLOBAL_EQUIPMENT.autoMiner *
@@ -879,7 +881,7 @@ const checkAutoMiners = () => {
       coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
 
-    addCoins(Math.round(coin));
+    globalCoins += Math.round(coin);
   }
   if (GLOBAL_EQUIPMENT.betterAutoMiner > 0) {
     let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.betterAutoMiner);
@@ -888,7 +890,7 @@ const checkAutoMiners = () => {
       coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
 
-    addCoins(Math.round(coin));
+    globalCoins += Math.round(coin);
   }
   if (GLOBAL_EQUIPMENT.highQualityAutoMiner > 0) {
     let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.highQualityAutoMiner);
@@ -897,8 +899,10 @@ const checkAutoMiners = () => {
       coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
 
-    addCoins(Math.round(coin));
+    globalCoins += Math.round(coin);
   }
+
+  if (globalCoins > 0) addCoins(globalCoins);
 };
 
 const checkCoins = () => {
