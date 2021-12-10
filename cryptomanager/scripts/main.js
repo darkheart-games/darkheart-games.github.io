@@ -417,7 +417,7 @@ const mineCoin = (amount, efficiency) => {
 
   if (GLOBAL_VALUES.int / 10 + randomVal > 1) {
     if (GLOBAL_VALUES.int >= Math.ceil(Math.random() * 10)) {
-      coins += 1;
+      coins *= 2;
     }
   }
 
@@ -583,10 +583,12 @@ const helperBuyCoins = () => {
 
 const helperSellCoins = () => {
   if (
-    GLOBAL_EQUIPMENT.helperSell.sellValue <= GLOBAL_STOCKDATA.currentSellValue &&
+    GLOBAL_EQUIPMENT.helperSell.sellValue <=
+      GLOBAL_STOCKDATA.currentSellValue &&
     GLOBAL_VALUES.coins > 0 &&
     GLOBAL_EQUIPMENT.helperSell.turnedOn
   ) {
+    console.log();
     addMoney(GLOBAL_VALUES.coins * GLOBAL_STOCKDATA.currentSellValue);
     removeCoins(GLOBAL_VALUES.coins);
   }
@@ -776,9 +778,6 @@ elementShopCourseChar.addEventListener("click", () => {
     if (Math.ceil(Math.random() * 10) <= 6) {
       writeToConsole("info", "You learned something new!");
       addChar(1);
-      if (GLOBAL_VALUES.char >= SETTINGS.stats.maxChar) {
-        elementShop.removeChild(elementShopCourseCharContainer);
-      }
     } else {
       writeToConsole("info", "Didn't learned anything new in this course!");
     }
@@ -792,9 +791,6 @@ elementShopCourseInt.addEventListener("click", () => {
     if (Math.ceil(Math.random() * 10) <= 6) {
       writeToConsole("info", "You learned something new!");
       addInt(1);
-      if (GLOBAL_VALUES.int >= SETTINGS.stats.maxInt) {
-        elementShop.removeChild(elementShopCourseIntContainer);
-      }
     } else {
       writeToConsole("info", "Didn't learned anything new in this course!");
     }
@@ -874,28 +870,34 @@ const checkAvailableMoney = (costs) => {
 
 const checkAutoMiners = () => {
   if (GLOBAL_EQUIPMENT.autoMiner > 0) {
-    for (let am = 0; am < GLOBAL_EQUIPMENT.autoMiner; am++) {
-      mineCoin(
-        SETTINGS.equipment.autoMiner.coinAmount,
-        SETTINGS.equipment.autoMiner.efficiency
-      );
+    let efficiency =
+      GLOBAL_EQUIPMENT.autoMiner *
+      (SETTINGS.equipment.autoMiner.efficiency + GLOBAL_VALUES.int / 10);
+    let coin = Math.ceil(Math.random() * efficiency);
+
+    if (GLOBAL_VALUES.int * Math.random()) {
+      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
+
+    addCoins(Math.round(coin));
   }
   if (GLOBAL_EQUIPMENT.betterAutoMiner > 0) {
-    for (let am = 0; am < GLOBAL_EQUIPMENT.betterAutoMiner; am++) {
-      mineCoin(
-        SETTINGS.equipment.betterAutoMiner.coinAmount,
-        SETTINGS.equipment.betterAutoMiner.efficiency
-      );
+    let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.betterAutoMiner);
+
+    if (GLOBAL_VALUES.int * Math.random()) {
+      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
+
+    addCoins(Math.round(coin));
   }
   if (GLOBAL_EQUIPMENT.highQualityAutoMiner > 0) {
-    for (let am = 0; am < GLOBAL_EQUIPMENT.highQualityAutoMiner; am++) {
-      mineCoin(
-        SETTINGS.equipment.highQualityAutoMiner.coinAmount,
-        SETTINGS.equipment.highQualityAutoMiner.efficiency
-      );
+    let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.highQualityAutoMiner);
+
+    if (GLOBAL_VALUES.int * Math.random()) {
+      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
     }
+
+    addCoins(Math.round(coin));
   }
 };
 
@@ -1037,7 +1039,7 @@ const checkShopPrices = () => {
     elementShopCourseChar.disabled = false;
   }
   // retire
-  if (   
+  if (
     (GLOBAL_VALUES.money < GLOBAL_PRICES.retire &&
       elementShopRetire.disabled === false) ||
     (GLOBAL_VALUES.int < SETTINGS.stats.maxInt &&
