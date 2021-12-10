@@ -228,8 +228,13 @@ const writeToConsole = (type, text) => {
   // append child to console
   elementConsole.appendChild(paragraph);
 
-  // scroll to bottom of console
-  elementConsole.scrollTop = elementConsole.scrollHeight;
+  if (
+    elementConsole.scrollTop >=
+    elementConsole.scrollHeight - elementConsole.clientHeight - 65
+  ) {
+    // scroll to bottom of console
+    elementConsole.scrollTop = elementConsole.scrollHeight;
+  }
 };
 
 const formatNumber = (num) => {
