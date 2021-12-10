@@ -1,7 +1,7 @@
 // GAME SETTINGS
 
 let SETTINGS = {
-  theme: "monospace",
+  theme: "terminal",
   lifecycle: 1000,
   priceIncrease: 1.2,
   equipment: {
