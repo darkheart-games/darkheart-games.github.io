@@ -583,7 +583,7 @@ const helperBuyCoins = () => {
 
 const helperSellCoins = () => {
   if (
-    GLOBAL_EQUIPMENT.helperBuy.sellValue <= GLOBAL_STOCKDATA.currentSellValue &&
+    GLOBAL_EQUIPMENT.helperSell.sellValue <= GLOBAL_STOCKDATA.currentSellValue &&
     GLOBAL_VALUES.coins > 0 &&
     GLOBAL_EQUIPMENT.helperSell.turnedOn
   ) {
