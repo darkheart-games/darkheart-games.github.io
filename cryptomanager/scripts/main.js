@@ -26,7 +26,7 @@ let SETTINGS = {
     maxEntries: 30
   },
   stats: {
-    maxInt: 10,
+    maxInt: 100,
     maxChar: 20
   }
 };
@@ -777,7 +777,10 @@ elementShopHelperSell.addEventListener("click", () => {
   }
 });
 elementShopCourseChar.addEventListener("click", () => {
-  if (checkAvailableMoney(GLOBAL_PRICES.courseChar)) {
+  if (
+    checkAvailableMoney(GLOBAL_PRICES.courseChar) &&
+    GLOBAL_VALUES.char < SETTINGS.stats.maxChar
+  ) {
     removeMoney(GLOBAL_PRICES.courseChar);
 
     if (Math.ceil(Math.random() * 10) <= 6) {
@@ -790,7 +793,10 @@ elementShopCourseChar.addEventListener("click", () => {
   }
 });
 elementShopCourseInt.addEventListener("click", () => {
-  if (checkAvailableMoney(GLOBAL_PRICES.courseInt)) {
+  if (
+    checkAvailableMoney(GLOBAL_PRICES.courseInt) &&
+    GLOBAL_VALUES.int < SETTINGS.stats.maxInt
+  ) {
     removeMoney(GLOBAL_PRICES.courseInt);
 
     if (Math.ceil(Math.random() * 10) <= 6) {
@@ -1064,6 +1070,19 @@ const checkShopPrices = () => {
     GLOBAL_VALUES.char >= SETTINGS.stats.maxChar
   ) {
     elementShopRetire.disabled = false;
+  }
+
+  if (
+    GLOBAL_VALUES.int >= SETTINGS.stats.maxInt &&
+    elementShopCourseIntContainer !== null
+  ) {
+    elementShop.removeChild(elementShopCourseIntContainer);
+  }
+  if (
+    GLOBAL_VALUES.char >= SETTINGS.stats.maxChar &&
+    elementShopCourseCharContainer !== null
+  ) {
+    elementShop.removeChild(elementShopCourseCharContainer);
   }
 };
 
