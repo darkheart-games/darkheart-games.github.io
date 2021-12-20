@@ -1,0 +1,82 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --systemGray: rgb(142, 142, 147);
+    --systemGray2: rgb(174, 174, 178);
+    --systemGray3: rgb(199, 199, 204);
+    --systemGray4: rgb(209, 209, 214);
+    --systemGray5: rgb(229, 229, 234);
+    --systemGray6: rgb(242, 242, 247);
+    --systemMain: rgb(255, 255, 255);
+    --systemMain-shade: rgba(255, 255, 255, 0.5);
+    --systemMainInvert-shade: rgba(0, 0, 0, 0.25);
+    --systemMainInvert: rgb(28, 28, 30);
+    --systemBrandColor: #ffd500;
+
+    --systemBlue: hsl(211, 100%, 50%);
+    --systemBrown: rgb(162, 132, 94);
+    --systemCyan: hsl(199, 78%, 55%);
+    --systemGreen: hsl(135, 59%, 49%);
+    --systemIndigo: rgb(88, 86, 214);
+    --systemMint: rgb(0, 199, 190);
+    --systemOrange: hsl(35, 100%, 50%);
+    --systemPink: rgb(255, 45, 85);
+    --systemPurple: rgb(175, 82, 222);
+    --systemRed: hsl(3, 100%, 59%);
+    --systemTeal: rgb(47, 174, 197);
+    --systemYellow: hsl(48, 100%, 50%);
+
+    --systemBlue-shade: hsl(211, 100%, 65%);
+    --systemBrown-shade: hsl(34, 27%, 65%);
+    --systemCyan-shade: hsl(199, 78%, 65%);
+    --systemGreen-shade: hsl(135, 59%, 65%);
+    --systemIndigo-shade: hsl(241, 61%, 65%);
+    --systemMint-shade: hsl(177, 100%, 69%);
+    --systemOrange-shade: hsl(35, 100%, 65%);
+    --systemPink-shade: hsl(349, 100%, 69%);
+    --systemPurple-shade: hsl(280, 68%, 69%);
+    --systemRed-shade: hsl(3, 100%, 69%);
+    --systemTeal-shade: hsl(189, 61%, 65%);
+    --systemYellow-shade: hsl(48, 100%, 65%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --systemGray: rgb(142, 142, 147);
+    --systemGray2: rgb(99, 99, 102);
+    --systemGray3: rgb(72, 72, 74);
+    --systemGray4: rgb(58, 58, 60);
+    --systemGray5: rgb(44, 44, 46);
+    --systemGray6: rgb(28, 28, 30);
+    --systemMain: rgb(0, 0, 0);
+    --systemMain-shade: rgba(0, 0, 0, 0.6);
+    --systemMainInvert-shade: rgba(255, 255, 255, 0.25);
+    --systemMainInvert: rgb(242, 242, 247);
+    --systemBrandColor: #ffd500;
+
+    --systemBlue: hsl(210, 100%, 52%);
+    --systemBrown: hsl(34, 29%, 54%);
+    --systemCyan: hsl(197, 100%, 70%);
+    --systemGreen: hsl(135, 64%, 50%);
+    --systemIndigo: hsl(241, 73%, 63%);
+    --systemMint: hsl(177, 56%, 62%);
+    --systemOrange: hsl(36, 100%, 52%);
+    --systemPink: hsl(348, 100%, 61%);
+    --systemPurple: hsl(280, 85%, 65%);
+    --systemRed: hsl(3, 100%, 61%);
+    --systemTeal: hsl(189, 72%, 56%);
+    --systemYellow: hsl(50, 100%, 52%);
+
+    --systemBlue-shade: hsl(210, 100%, 52%);
+    --systemBrown-shade: hsl(34, 29%, 54%);
+    --systemCyan-shade: hsl(197, 100%, 70%);
+    --systemGreen-shade: hsl(135, 64%, 50%);
+    --systemIndigo-shade: hsl(241, 73%, 75%);
+    --systemMint-shade: hsl(177, 56%, 62%);
+    --systemOrange-shade: hsl(36, 100%, 52%);
+    --systemPink-shade: hsl(348, 100%, 61%);
+    --systemPurple-shade: hsl(280, 85%, 65%);
+    --systemRed-shade: hsl(3, 100%, 61%);
+    --systemTeal-shade: hsl(189, 72%, 56%);
+    --systemYellow-shade: hsl(50, 100%, 60%);
+  }
+}

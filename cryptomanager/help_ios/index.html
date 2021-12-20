@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crypto Manager iOS</title>
+    <meta charset="UTF-8" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/variables.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="assets/CryptoManager_Logo.png"
+        alt="Crypto Manager Logo - A purple and a white C in front of a black background."
+      />
+      <div>
+        <h1>
+          <span class="logo-indigo">Crypto</span><br /><span class="logo-white"
+            >Manager</span
+          >
+        </h1>
+        <h2>Official Guide</h2>
+      </div>
+    </header>
+
+    <nav>
+      <h3>Summary</h3>
+      <ul>
+        <li><a href="#explained">What is Crypto Manager?</a></li>
+        <li>
+          <a href="#ui">UI explained</a>
+          <ul>
+            <li><a href="#ui-market">Market</a></li>
+            <li><a href="#ui-shop">Shop</a></li>
+            <li><a href="#ui-settings">Settings</a></li>
+          </ul>
+        </li>
+        <li><a href="#values">Values</a></li>
+        <li><a href="#equipment">Equipment</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="explained">
+        <h3>What is Crypto Manager?</h3>
+        <p>
+          In Crypto Manager you take on the role of a crypto enthusiast who
+          wants to get rich.<br />You have learned about the new currency
+          CryptoCoin and want to make big money with it. You can either fight
+          your way up through the current market development or get your hands
+          dirty by doing your own crypto mining.<br />Will you be able to make
+          the big breakthrough?
+        </p>
+      </section>
+      <section id="ui">
+        <h3>UI explained</h3>
+        <h4 id="ui-market">Market View</h4>
+        <h5>Top View</h5>
+        <p>
+          In this view you will find the timer, sale and purchase value at the
+          top. The timer counts down from 30, as soon as it is at 0, the value
+          of the CryptoCoin will be randomly recalculated. the value is then
+          displayed at sell. the purchase value is always 5% more than the sale
+          value. The sales value progression is also shown again in the diagram.
+          A maximum of 20 values are displayed here. Under the chart, the
+          available money and cryptocoins are displayed.
+        </p>
+        <h5>Bottom View</h5>
+        <p>
+          Here you can initially sell or buy cryptocoins. In the later game, you
+          can buy helpers in the store, which are then displayed here. The
+          helpers and other store items will be discussed in more detail at a
+          later point in this guide.
+        </p>
+        <h5>Navigation</h5>
+        <p>
+          In the navigation you can access the store on the left and the
+          settings on the right. In the middle you can manually mine
+          cryptocoins. The effectiveness is described again in the equipment
+          part.
+        </p>
+
+        <h4 id="ui-shop">Shop</h4>
+        <h5>Top View</h5>
+        <p>
+          You will find information about your money, your current energy costs
+          and your current intelligence value.
+        </p>
+        <h5>Bottom View</h5>
+        <p>
+          You can find here all the items that are available for purchase. more
+          detailed information about the products can be found in the Equipment
+          section. If products can be bought several times, the price per
+          purchase always increases by 40%. The sales value is 20% less than the
+          purchase value.
+        </p>
+
+        <h4 id="ui-settings">Settings</h4>
+        <h5>Top View</h5>
+        <p>
+          A timer is displayed that shows you the current game duration. this
+          timer is also displayed again when you have completed the game, so
+          that you know how long it took you.
+        </p>
+        <h5>Bottom View</h5>
+        <p>
+          You can reset your game once here if you want to start over. In
+          addition, there is a query whether you want to rate the game (not
+          mandatory), donate one of the predefined values to the developer or
+          display the help page. At the point of donation, you get another popup
+          where you can select the value and must then confirm it again. You do
+          not get any benefits for this donation.
+        </p>
+      </section>
+      <section>
+        <h3 id="values">Values</h3>
+        <dl>
+          <dt>Money</dt>
+          <dd>Is the currency of the game. It is given in dollars.</dd>
+
+          <dt>CryptoCoin</dt>
+          <dd>
+            Is the cryptocurrency of the game. this was invented freely and is
+            not related to any existing cryptocurrencies.
+          </dd>
+
+          <dt>Intelligence</dt>
+          <dd>
+            The higher the intelligence, the higher the chance of finding one or
+            more cryptocoin in the automatic or manual mining of cryptocoins.
+          </dd>
+
+          <dt>Energy Cost per min</dt>
+          <dd>
+            Indicates how high the energy costs are in the minute. Half of it is
+            subtracted every 30 seconds.
+          </dd>
+
+          <dt>Efficiency</dt>
+          <dd>
+            The effectiveness indicates how high the chance is to get one or
+            more cryptocoins. This value can be influenced by the intelligence.
+          </dd>
+
+          <dt>Sell</dt>
+          <dd>Is the current value when you sell a cryptocoin.</dd>
+
+          <dt>Buy</dt>
+          <dd>Is the current value when you buy a cryptocoin.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3 id="equipment">Equipment</h3>
+        <dl>
+          <dt>Manually Mine CryptoCoin</dt>
+          <dd>
+            Everytime you tap on the manual mining button, you have a chance to
+            get a CryptoCoin. Can be influenced by the intelligence.
+            <ul>
+              <li><span>Efficiency</span><span>20%</span></li>
+            </ul>
+          </dd>
+
+          <dt>Autominer</dt>
+          <dd>
+            Automatically searches for cryptocoins every second. Can be
+            influenced by the intelligence.
+            <ul>
+              <li><span>Efficiency</span><span>10%</span></li>
+              <li><span>Energy Cost per Min</span><span>2$</span></li>
+            </ul>
+          </dd>
+
+          <dt>Better Autominer</dt>
+          <dd>
+            Automatically searches for cryptocoins every second. Can be
+            influenced by the intelligence. +20% more efficiency than Autominer
+            <ul>
+              <li><span>Efficiency</span><span>30%</span></li>
+              <li><span>Energy Cost per Min</span><span>6$</span></li>
+            </ul>
+          </dd>
+
+          <dt>High Quality Autominer</dt>
+          <dd>
+            Automatically searches for cryptocoins every second. Can be
+            influenced by the intelligence. +70% more efficiency than Autominer
+            and +50% more efficiency than Better Autominer.
+            <ul>
+              <li><span>Efficiency</span><span>80%</span></li>
+              <li><span>Energy Cost per Min</span><span>10$</span></li>
+            </ul>
+          </dd>
+
+          <dt>Crpyto Course</dt>
+          <dd>
+            You have a 60% chance of adding +1 to you intelligence. Can be
+            bought as often as you want.
+          </dd>
+
+          <dt>Stock Helper: Sell</dt>
+          <dd>
+            Enables auto sell function and is display in the Market view, next
+            to buy/sell cryptocoin.. You can enter a min sell value. It will
+            automatically sell all available cryptocoins 1s bevor the new market
+            value will be generated
+          </dd>
+
+          <dt>Stock Helper: Buy</dt>
+          <dd>
+            Enables auto buy function and is display in the Market view, next to
+            buy/sell cryptocoin. You can enter a max buy value. It will
+            automatically buys everything it can with the available money 1s
+            bevor the new market value will be generated
+          </dd>
+
+          <dt>Solar Panels</dt>
+          <dd>
+            Will remove all energy costs. Can only be bought once.
+          </dd>
+
+          <dt>Villa</dt>
+          <dd>
+            This will end the game. You bought the villa and retire. Will show
+            th end view.
+          </dd>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      <p>Last updated: 2021.12.21 - 18:00</p>
+    </footer>
+  </body>
+</html>

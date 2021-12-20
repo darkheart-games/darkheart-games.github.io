@@ -1,0 +1,141 @@
+body {
+  background-color: var(--systemMain);
+}
+
+.logo-indigo {
+  color: var(--systemIndigo);
+}
+.logo-white {
+  color: var(--systemMainInvert);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--systemGray);
+}
+p,
+dl {
+  color: var(--systemMainInvert);
+  padding: 0.8em 0;
+  text-align: justify;
+  font-size: 1.125em;
+}
+dd + dt {
+  margin-top: 1em;
+}
+dt {
+  font-weight: bold;
+  color: var(--systemGray);
+}
+
+h3 {
+  border-left: 5px solid var(--systemMainInvert);
+  padding: 0 0 0 0.5em;
+  color: var(--systemIndigo);
+  font-size: 1.6rem;
+}
+h4 {
+  font-size: 1.3rem;
+  color: var(--systemIndigo-shade);
+  border-left: 10px solid var(--systemIndigo-shade);
+  padding: 0 0 0 0.5em;
+}
+h5 {
+  font-size: 1.125rem;
+  border-left: 15px solid var(--systemGray3);
+  padding: 0 0 0 0.5em;
+}
+
+header,
+nav,
+main,
+footer {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5em;
+  position: relative;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  min-height: 100vh;
+}
+header > div {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+header > div > h2 {
+  padding-top: 0.5em;
+  border-top: 2px solid var(--systemGray3);
+  margin-top: 0.5em;
+}
+header > img {
+  width: 256px;
+  height: 256px;
+  margin-right: 1em;
+}
+nav {
+  width: 100%;
+}
+
+h4,
+p + h5 {
+  margin: 1rem 0;
+}
+section {
+  border-top: 2px solid var(--systemGray4);
+  padding: 2em;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 2em;
+}
+ul > li {
+  margin: 0.5em;
+  width: 100%;
+}
+ul > li > a {
+  padding: 0.75em;
+  text-decoration: none;
+  background-color: var(--systemGray5);
+  border-radius: 8px;
+  display: block;
+  color: var(--systemMainInvert);
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+ul > li > a:hover {
+  background-color: var(--systemIndigo);
+}
+ul > li > ul {
+  margin-top: 0;
+}
+ul > li > ul > li {
+  margin-top: 0.25em;
+  margin-left: 2em;
+  width: calc(100% - 2em);
+}
+ul > li > ul > li:first-child {
+  margin-top: 0.75em;
+}
+ul > li > ul > li > a {
+  background-color: var(--systemGray6);
+  font-weight: 400;
+}
+ul > li > ul > li > a:hover {
+  background-color: var(--systemIndigo-shade);
+}
