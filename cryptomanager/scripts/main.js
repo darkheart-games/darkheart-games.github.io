@@ -173,19 +173,19 @@ const elementShopBetterAutoMinerSell = document.getElementById(
 const elementShopHighQualityAutoMinerSell = document.getElementById(
   "shop--highquality-auto-miner-sell"
 );
-const elementShopHelperBuyContainer = document.getElementById(
+let elementShopHelperBuyContainer = document.getElementById(
   "shop--helper-buy-container"
 );
 const elementShopHelperBuy = document.getElementById("shop--helper-buy");
-const elementShopHelperSellContainer = document.getElementById(
+let elementShopHelperSellContainer = document.getElementById(
   "shop--helper-sell-container"
 );
 const elementShopHelperSell = document.getElementById("shop--helper-sell");
-const elementShopCourseCharContainer = document.getElementById(
+let elementShopCourseCharContainer = document.getElementById(
   "shop--course-char-container"
 );
 const elementShopCourseChar = document.getElementById("shop--course-char");
-const elementShopCourseIntContainer = document.getElementById(
+let elementShopCourseIntContainer = document.getElementById(
   "shop--course-int-container"
 );
 const elementShopCourseInt = document.getElementById("shop--course-int");
@@ -766,6 +766,8 @@ elementShopHelperBuy.addEventListener("click", () => {
     removeMoney(GLOBAL_PRICES.helperBuy);
     elementShop.removeChild(elementShopHelperBuyContainer);
     elementActionHelperBuyContainer.classList.remove("hidden");
+    
+    elementShopHelperBuyContainer = null;
   }
 });
 elementShopHelperSell.addEventListener("click", () => {
@@ -774,6 +776,8 @@ elementShopHelperSell.addEventListener("click", () => {
     removeMoney(GLOBAL_PRICES.helperSell);
     elementShop.removeChild(elementShopHelperSellContainer);
     elementActionHelperSellContainer.classList.remove("hidden");
+
+    elementShopHelperSellContainer = null;
   }
 });
 elementShopCourseChar.addEventListener("click", () => {
@@ -790,6 +794,7 @@ elementShopCourseChar.addEventListener("click", () => {
       writeToConsole("info", "Didn't learned anything new in this course!");
     }
     GLOBAL_PRICES.courseChar = increasePrice(GLOBAL_PRICES.courseChar);
+
   }
 });
 elementShopCourseInt.addEventListener("click", () => {
@@ -807,6 +812,7 @@ elementShopCourseInt.addEventListener("click", () => {
     }
 
     GLOBAL_PRICES.courseInt = increasePrice(GLOBAL_PRICES.courseInt);
+
   }
 });
 elementActionHelperBuyInput.addEventListener("input", (e) => {
@@ -1077,12 +1083,14 @@ const checkShopPrices = () => {
     elementShopCourseIntContainer !== null
   ) {
     elementShop.removeChild(elementShopCourseIntContainer);
+    elementShopCourseIntContainer = null;
   }
   if (
     GLOBAL_VALUES.char >= SETTINGS.stats.maxChar &&
     elementShopCourseCharContainer !== null
   ) {
     elementShop.removeChild(elementShopCourseCharContainer);
+    elementShopCourseCharContainer = null;
   }
 };
 
