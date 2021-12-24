@@ -62,6 +62,24 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
 }
+.text-action--wrapper.wrap > div:last-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.text-action--wrapper.wrap > div:last-child > input {
+  width: 50%;
+}
+.text-action--wrapper.wrap > div:last-child > button:first-of-type {
+  width: calc(50% - 2.25em);
+  margin-right: 0;
+}
+.text-action--wrapper.wrap > div:last-child > button:last-of-type {
+  margin-left: 0;
+  margin-bottom: 0;
+}
 .text-action--wrapper > div > p:nth-child(3) {
   padding: 0.25em 0.75em;
   background-color: var(--colorBody);

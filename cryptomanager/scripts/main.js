@@ -137,8 +137,10 @@ const elementStockChart = document.getElementById("stock--chart");
 const elementActions = document.getElementById("actions");
 const elementActionSellInput = document.getElementById("action--sell-input");
 const elementActionSellCoin = document.getElementById("action--sell-coin");
+const elementActionSellAllCoins = document.getElementById("action--sell-all-coins");
 const elementActionBuyInput = document.getElementById("action--buy-input");
 const elementActionBuyCoin = document.getElementById("action--buy-coin");
+const elementActionBuyAllCoins = document.getElementById("action--buy-all-coins");
 const elementActionMineCoin = document.getElementById("action--mine-coin");
 const elementActionHelperBuyContainer = document.getElementById(
   "action--helper-buy-container"
@@ -759,6 +761,17 @@ elementActionBuyCoin.addEventListener("click", () => {
   ) {
     buyCoins();
   }
+});
+elementActionBuyAllCoins.addEventListener("click", () => {
+  let buyValueTemp = GLOBAL_STOCKDATA.currentBuyValue
+  let coinsBought = Math.floor(GLOBAL_VALUES.money / buyValueTemp);
+  removeMoney(coinsBought * buyValueTemp);
+  addCoins(coinsBought);
+});
+elementActionSellAllCoins.addEventListener("click", () => {
+  let sellValueTemp = GLOBAL_STOCKDATA.currentSellValue
+  addMoney(GLOBAL_VALUES.coins * sellValueTemp)
+  removeCoins(GLOBAL_VALUES.coins);
 });
 elementShopHelperBuy.addEventListener("click", () => {
   if (checkAvailableMoney(GLOBAL_PRICES.helperBuy)) {
