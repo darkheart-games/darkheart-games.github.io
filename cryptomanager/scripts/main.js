@@ -1,7 +1,8 @@
 // GAME SETTINGS
-
 let SETTINGS = {
   theme: "terminal",
+  autoSave: "off",
+  marketTimer: "medium",
   lifecycle: 1000,
   priceIncrease: 1.2,
   equipment: {
@@ -96,6 +97,12 @@ const elementPopupSettingsSave = document.getElementById(
 );
 const elementPopupSettingsSelectedTheme = document.getElementById(
   "popup--settings--selected-theme"
+);
+const elementPopupSettingsAutoSave = document.getElementById(
+  "popup--settings--auto-save"
+);
+const elementPopupSettingsMarketTimer = document.getElementById(
+  "popup--settings--market-timer"
 );
 const elementPopupRetire = document.getElementById("popup--retire");
 const elementPopupRetireRestart = document.getElementById(
@@ -595,18 +602,19 @@ const helperSellCoins = () => {
     GLOBAL_VALUES.coins > 0 &&
     GLOBAL_EQUIPMENT.helperSell.turnedOn
   ) {
-    console.log();
     addMoney(GLOBAL_VALUES.coins * GLOBAL_STOCKDATA.currentSellValue);
     removeCoins(GLOBAL_VALUES.coins);
   }
 };
 
-const saveGame = () => {
+const saveGame = (silent) => {
   localStorage.setItem("GLOBAL_VALUES", JSON.stringify(GLOBAL_VALUES));
   localStorage.setItem("GLOBAL_EQUIPMENT", JSON.stringify(GLOBAL_EQUIPMENT));
   localStorage.setItem("GLOBAL_PRICES", JSON.stringify(GLOBAL_PRICES));
   localStorage.setItem("GLOBAL_STOCKDATA", JSON.stringify(GLOBAL_STOCKDATA));
-  writeToConsole("success", "Game saved!");
+  if (!silent) {
+    writeToConsole("success", "Game saved!");
+  }
 };
 
 const resetGame = () => {
@@ -614,6 +622,7 @@ const resetGame = () => {
   localStorage.removeItem("GLOBAL_EQUIPMENT");
   localStorage.removeItem("GLOBAL_PRICES");
   localStorage.removeItem("GLOBAL_STOCKDATA");
+  localStorage.removeItem("SETTINGS");
   writeToConsole("success", "Game reseted!");
   window.location.reload();
 };
@@ -644,7 +653,7 @@ elementGameReset.addEventListener("click", () => {
   elementPopupReset.classList = "show";
   elementPopup.classList = "show";
 });
-elementGameSave.addEventListener("click", saveGame);
+elementGameSave.addEventListener("click", () => saveGame(false));
 
 elementPopupSettingsCancle.addEventListener("click", () => {
   elementPopupSettings.classList = "";
@@ -653,17 +662,44 @@ elementPopupSettingsCancle.addEventListener("click", () => {
 elementPopupSettingsSave.addEventListener("click", () => {
   elementPopupSettings.classList = "";
   elementPopup.classList = "";
-  const tempSettings = { theme: elementPopupSettingsSelectedTheme.value };
+  const tempSettings = { theme: elementPopupSettingsSelectedTheme.value, autoSave: elementPopupSettingsAutoSave.value, marketTimer: elementPopupSettingsMarketTimer.value};
   localStorage.setItem("SETTINGS", JSON.stringify(tempSettings));
-  saveGame();
+  saveGame(true);
   window.location.reload();
 });
 elementGameSettings.addEventListener("click", () => {
   elementPopupSettings.classList = "show";
   elementPopup.classList = "show";
-  const tempSettings = JSON.parse(localStorage.getItem("SETTINGS"));
+  let tempSettings = {
+    theme: "terminal",
+    autoSave: "off"
+  };
+  if (localStorage.getItem("SETTINGS") !== null) {
+    if (JSON.parse(localStorage.getItem("SETTINGS")).theme === null) {
+      tempSettings.theme = "terminal"
+    } else {
+      tempSettings.theme = JSON.parse(localStorage.getItem("SETTINGS")).theme
+    }
+
+    if (JSON.parse(localStorage.getItem("SETTINGS")).autoSave === null) {
+      tempSettings.autoSave = "off"
+    } else {
+      tempSettings.autoSave = JSON.parse(localStorage.getItem("SETTINGS")).autoSave
+    }
+
+    if (JSON.parse(localStorage.getItem("SETTINGS")).marketTimer === null) {
+      tempSettings.marketTimer = "medium"
+    } else {
+      tempSettings.marketTimer = JSON.parse(localStorage.getItem("SETTINGS")).marketTimer
+    }
+  }
+
   SETTINGS.theme = tempSettings.theme;
+  SETTINGS.autoSave = tempSettings.autoSave;
+  SETTINGS.marketTimer = tempSettings.marketTimer;
   elementPopupSettingsSelectedTheme.value = SETTINGS.theme;
+  elementPopupSettingsAutoSave.value = SETTINGS.autoSave;
+  elementPopupSettingsMarketTimer.value = SETTINGS.marketTimer;
 });
 
 elementActionMineCoin.addEventListener("click", () => mineCoin(1, 0.2));
@@ -948,7 +984,23 @@ const checkTimerStockChange = () => {
     updateStockValue();
     createStockChart();
 
-    GLOBAL_STOCKDATA.timer = SETTINGS.stock.timer;
+    let stockTimerDelta = 0;
+
+    switch (SETTINGS.marketTimer) {
+      case "slow":
+        stockTimerDelta = 15000;
+        break;
+      case "medium":
+        stockTimerDelta = 0;
+        break;
+      case "fast":
+        stockTimerDelta = -15000;
+        break;
+      default:
+        console.log("Something went wrong!");
+    }
+
+    GLOBAL_STOCKDATA.timer = SETTINGS.stock.timer + stockTimerDelta;
   } else {
     GLOBAL_STOCKDATA.timer -= SETTINGS.lifecycle;
   }
@@ -1202,8 +1254,18 @@ const startup = () => {
     checkHelperBuy();
     checkHelperSell();
     if (localStorage.getItem("SETTINGS") !== null) {
-      SETTINGS.theme =
-        JSON.parse(localStorage.getItem("SETTINGS")).theme || "monospace";
+      if (localStorage.getItem("SETTINGS").theme !== null) {
+        SETTINGS.theme =
+          JSON.parse(localStorage.getItem("SETTINGS")).theme;
+      }
+      if (localStorage.getItem("SETTINGS").theme !== null) {
+        SETTINGS.autoSave =
+          JSON.parse(localStorage.getItem("SETTINGS")).autoSave;
+      }
+      if (localStorage.getItem("SETTINGS").marketTimer !== null) {
+        SETTINGS.marketTimer =
+          JSON.parse(localStorage.getItem("SETTINGS")).marketTimer;
+      }
     }
   } else {
     // setup new data
@@ -1247,6 +1309,9 @@ const updateLoop = () => {
   updatePriceTagCourseChar();
   updatePriceTagRetire();
 
+  if (SETTINGS.autoSave === "on") {
+    saveGame(true);
+  }
   // UPDATE ENDED
 };
 
