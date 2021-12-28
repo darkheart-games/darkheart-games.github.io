@@ -14,6 +14,7 @@
     "char int";
 }
 #info > p {
+  position: relative;
   font-size: 1.25em;
   background-color: var(--colorInputBorder);
   display: flex;
@@ -37,4 +38,18 @@
 }
 #info > p:nth-child(4) {
   grid-area: money;
+}
+
+
+
+.icon {
+  position: absolute;
+  top: .25em;
+  left: .25em;
+  stroke: var(--colorHeadline);
+  width: 2em;
+  height: 2em;
+}
+.icon:hover {
+  cursor: pointer;
 }

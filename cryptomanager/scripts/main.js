@@ -61,7 +61,7 @@ let GLOBAL_EQUIPMENT = {
 let GLOBAL_PRICES = {
   autoMiner: 100,
   betterAutoMiner: 1000,
-  highQualityAutoMiner: 10000,
+  highQualityAutoMiner: 7500,
   helperSell: 1500,
   helperBuy: 1500,
   courseInt: 500,
@@ -81,6 +81,18 @@ let GLOBAL_STOCKDATA = {
 
 // get dom elements for popup
 const elementPopup = document.getElementById("popup");
+
+const elementShowIntHelper = document.getElementById("popup--helper-int--show");
+const elementPopupInt = document.getElementById("popup--helper-int");
+const elementPopupIntCancel = document.getElementById(
+  "popup--helper-int--cancel"
+);
+const elementShowCharHelper = document.getElementById("popup--helper-char--show");
+const elementPopupChar = document.getElementById("popup--helper-char");
+const elementPopupCharCancel = document.getElementById(
+  "popup--helper-char--cancel"
+);
+
 const elementPopupReset = document.getElementById("popup--reset-game");
 const elementPopupResetCancle = document.getElementById(
   "popup--reset-game--cancle"
@@ -640,6 +652,22 @@ const loadGame = () => {
 // --------------------
 // GAME EVENTLISTENERS
 
+elementShowIntHelper.addEventListener("click", () => {
+  elementPopupInt.classList = "show";
+  elementPopup.classList = "show";
+});
+elementPopupIntCancel.addEventListener("click", () => {
+  elementPopupInt.classList = "";
+  elementPopup.classList = "";
+});
+elementShowCharHelper.addEventListener("click", () => {
+  elementPopupChar.classList = "show";
+  elementPopup.classList = "show";
+});
+elementPopupCharCancel.addEventListener("click", () => {
+  elementPopupChar.classList = "";
+  elementPopup.classList = "";
+});
 elementPopupResetCancle.addEventListener("click", () => {
   elementPopupReset.classList = "";
   elementPopup.classList = "";
@@ -941,28 +969,38 @@ const checkAutoMiners = () => {
     let efficiency =
       GLOBAL_EQUIPMENT.autoMiner *
       (SETTINGS.equipment.autoMiner.efficiency + GLOBAL_VALUES.int / 10);
-    let coin = Math.ceil(Math.random() * efficiency);
+    let coin = 0;
+    const randNumber = Math.random();
 
-    if (GLOBAL_VALUES.int * Math.random()) {
-      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
+    if (randNumber <= efficiency) {
+      coin = Math.ceil(efficiency)
     }
 
     globalCoins += Math.round(coin);
   }
-  if (GLOBAL_EQUIPMENT.betterAutoMiner > 0) {
-    let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.betterAutoMiner);
 
-    if (GLOBAL_VALUES.int * Math.random()) {
-      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
+  if (GLOBAL_EQUIPMENT.betterAutoMiner > 0) {
+    let efficiency =
+      GLOBAL_EQUIPMENT.betterAutoMiner *
+      (SETTINGS.equipment.betterAutoMiner.efficiency + GLOBAL_VALUES.int / 10);
+    let coin = 0;
+    const randNumber = Math.random();
+
+    if (randNumber <= efficiency) {
+      coin = Math.ceil(efficiency)
     }
 
     globalCoins += Math.round(coin);
   }
   if (GLOBAL_EQUIPMENT.highQualityAutoMiner > 0) {
-    let coin = Math.ceil(Math.random() * GLOBAL_EQUIPMENT.highQualityAutoMiner);
+    let efficiency =
+      GLOBAL_EQUIPMENT.highQualityAutoMiner *
+      (SETTINGS.equipment.highQualityAutoMiner.efficiency + GLOBAL_VALUES.int / 10);
+    let coin = 0;
+    const randNumber = Math.random();
 
-    if (GLOBAL_VALUES.int * Math.random()) {
-      coin = coin * (1 + (GLOBAL_VALUES.int * Math.random()) / 10);
+    if (randNumber <= efficiency) {
+      coin = Math.ceil(efficiency)
     }
 
     globalCoins += Math.round(coin);
@@ -997,7 +1035,7 @@ const checkTimerStockChange = () => {
         stockTimerDelta = -15000;
         break;
       default:
-        console.log("Something went wrong!");
+        stockTimerDelta = 0;
     }
 
     GLOBAL_STOCKDATA.timer = SETTINGS.stock.timer + stockTimerDelta;

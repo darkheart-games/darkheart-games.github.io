@@ -38,8 +38,6 @@
           }
         }
 
-        console.log(filename);
-
         loadThemeFile(filename);
       };
 
@@ -51,6 +49,24 @@
 
   <body>
     <div id="popup">
+      <div id="popup--helper-int">
+        <h2>INT</h2>
+        <p>
+          Int is short for Intelligence.<br>With a higher int value, the efficiency will increase and the chance of getting more than 1 coin per autominer will increase.
+        </p>
+        <div>
+          <button id="popup--helper-int--cancel">Close</button>
+        </div>
+      </div>
+      <div id="popup--helper-char">
+        <h2>CHAR</h2>
+        <p>
+          Char is short for Charisma.<br>If you have higher charisma, the price increase in the shop will decrease.
+        </p>
+        <div>
+          <button id="popup--helper-char--cancel">Close</button>
+        </div>
+      </div>
       <div id="popup--reset-game">
         <h2>Delete Gamedata?</h2>
         <p>
@@ -58,7 +74,7 @@
           permanently deleted!
         </p>
         <div>
-          <button id="popup--reset-game--cancle">Cancle</button>
+          <button id="popup--reset-game--cancle">Cancel</button>
           <button id="popup--reset-game--delete">Delete</button>
         </div>
       </div>
@@ -121,8 +137,22 @@
         <h2>Status</h2>
         <div id="status">
           <div id="info">
-            <p>Char: <span id="info--char">-</span></p>
-            <p>Int: <span id="info--int">-</span></p>
+            <p>
+              <svg xmlns="http://www.w3.org/2000/svg" id="popup--helper-char--show" class="icon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="12" cy="12" r="9" />
+                <line x1="12" y1="17" x2="12" y2="17.01" />
+                <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
+              </svg>
+              Char: <span id="info--char">-</span></p>
+            <p>
+              <svg xmlns="http://www.w3.org/2000/svg" id="popup--helper-int--show" class="icon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="12" cy="12" r="9" />
+                <line x1="12" y1="17" x2="12" y2="17.01" />
+                <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
+              </svg>
+              Int: <span id="info--int">-</span></p>
             <p>Coins: <span id="info--coins">-</span></p>
             <p>Money: <span id="info--money">--.--</span></p>
           </div>
