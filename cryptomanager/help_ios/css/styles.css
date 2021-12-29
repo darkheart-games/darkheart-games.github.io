@@ -164,3 +164,15 @@ dd > ul > li > span:last-child {
   font-weight: 700;
   font-size: 1.5em;
 }
+
+@media screen and (max-width: 32rem) {
+  dd > ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  dd > ul > li {
+    margin: 1em 0;
+  }
+}
