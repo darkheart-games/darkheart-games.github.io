@@ -1294,20 +1294,16 @@ const startup = () => {
       if (localStorage.getItem("SETTINGS").autoSave !== null) {
         SETTINGS.autoSave =
           JSON.parse(localStorage.getItem("SETTINGS")).autoSave;
-
-          if (SETTINGS.autoSave === "on") {
-            if (!elementGameSave.classList.contains("hide")) {
-              elementGameSave.classList.add("hide");
-            }
-          } else {
-            if (elementGameSave.classList.contains("hide")) {
-              elementGameSave.classList.remove("hide");
-            }
-          }
       }
       if (localStorage.getItem("SETTINGS").marketTimer !== null) {
         SETTINGS.marketTimer =
           JSON.parse(localStorage.getItem("SETTINGS")).marketTimer;
+      }
+    }
+
+    if (SETTINGS.autoSave !== "off") {
+      if (!elementGameSave.classList.contains("hide")) {
+        elementGameSave.classList.add("hide");
       }
     }
   } else {
