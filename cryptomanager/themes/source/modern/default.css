@@ -6,6 +6,10 @@ body {
   background-color: var(--colorBody);
 }
 
+.hide {
+  display: none;
+}
+
 .wrapper {
   background-color: var(--colorBodyHighlight);
   border-radius: 16px;

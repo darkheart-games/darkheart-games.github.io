@@ -1,8 +1,8 @@
 // GAME SETTINGS
 let SETTINGS = {
   theme: "terminal",
-  autoSave: "off",
-  marketTimer: "medium",
+  autoSave: "on",
+  marketTimer: 0,
   lifecycle: 1000,
   priceIncrease: 1.2,
   equipment: {
@@ -700,7 +700,8 @@ elementGameSettings.addEventListener("click", () => {
   elementPopup.classList = "show";
   let tempSettings = {
     theme: "terminal",
-    autoSave: "off"
+    autoSave: "on",
+    marketTimer: 0
   };
   if (localStorage.getItem("SETTINGS") !== null) {
     if (JSON.parse(localStorage.getItem("SETTINGS")).theme === null) {
@@ -710,15 +711,25 @@ elementGameSettings.addEventListener("click", () => {
     }
 
     if (JSON.parse(localStorage.getItem("SETTINGS")).autoSave === null) {
-      tempSettings.autoSave = "off"
+      tempSettings.autoSave = "on"
     } else {
       tempSettings.autoSave = JSON.parse(localStorage.getItem("SETTINGS")).autoSave
     }
 
     if (JSON.parse(localStorage.getItem("SETTINGS")).marketTimer === null) {
-      tempSettings.marketTimer = "medium"
+      tempSettings.marketTimer = 0
     } else {
       tempSettings.marketTimer = JSON.parse(localStorage.getItem("SETTINGS")).marketTimer
+    }
+  }
+  
+  if (SETTINGS.autoSave === "on") {
+    if (!elementGameSave.classList.contains("hide")) {
+      elementGameSave.classList.add("hide");
+    }
+  } else {
+    if (elementGameSave.classList.contains("hide")) {
+      elementGameSave.classList.remove("hide");
     }
   }
 
@@ -1022,23 +1033,7 @@ const checkTimerStockChange = () => {
     updateStockValue();
     createStockChart();
 
-    let stockTimerDelta = 0;
-
-    switch (SETTINGS.marketTimer) {
-      case "slow":
-        stockTimerDelta = 15000;
-        break;
-      case "medium":
-        stockTimerDelta = 0;
-        break;
-      case "fast":
-        stockTimerDelta = -15000;
-        break;
-      default:
-        stockTimerDelta = 0;
-    }
-
-    GLOBAL_STOCKDATA.timer = SETTINGS.stock.timer + stockTimerDelta;
+    GLOBAL_STOCKDATA.timer = SETTINGS.stock.timer - (SETTINGS.marketTimer * 1000);
   } else {
     GLOBAL_STOCKDATA.timer -= SETTINGS.lifecycle;
   }
@@ -1296,9 +1291,19 @@ const startup = () => {
         SETTINGS.theme =
           JSON.parse(localStorage.getItem("SETTINGS")).theme;
       }
-      if (localStorage.getItem("SETTINGS").theme !== null) {
+      if (localStorage.getItem("SETTINGS").autoSave !== null) {
         SETTINGS.autoSave =
           JSON.parse(localStorage.getItem("SETTINGS")).autoSave;
+
+          if (SETTINGS.autoSave === "on") {
+            if (!elementGameSave.classList.contains("hide")) {
+              elementGameSave.classList.add("hide");
+            }
+          } else {
+            if (elementGameSave.classList.contains("hide")) {
+              elementGameSave.classList.remove("hide");
+            }
+          }
       }
       if (localStorage.getItem("SETTINGS").marketTimer !== null) {
         SETTINGS.marketTimer =

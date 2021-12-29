@@ -99,17 +99,20 @@
             <div style="height: 1em;"></div>
             <label for="autosave-select">Auto Save:</label>
             <select name="autosave-select" id="popup--settings--auto-save">
-              <option value="off" selected>Off</option>
-              <option value="on">On</option>
+              <option value="on" selected>On</option>
+              <option value="off">Off</option>
             </select>
             <div style="height: 1em;"></div>
             <label for="markettimer-select">Market Timer:</label>
             <select name="markettimer-select" id="popup--settings--market-timer">
-              <option value="slow">Slow</option>
-              <option value="medium" selected>Medium</option>
-              <option value="fast">Fast</option>
+              <option value="0" selected>30s</option>
+              <option value="5">25s</option>
+              <option value="10">20s</option>
+              <option value="15">15s</option>
+              <option value="20">10s</option>
+              <option value="25">5s</option>
             </select>
-            <p>Market Timer will reset after the timer reached 0!</p>
+            <p>New market timer will be active, after the timer reached 0!</p>
           </div>
         </div>
         <div>

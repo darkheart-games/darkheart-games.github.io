@@ -4,6 +4,12 @@
 body {
   background-color: var(--colorBody);
 }
+
+.hide {
+  display: none;
+}
+
+
 h1,
 h2,
 h3,
