@@ -1,0 +1,46 @@
+main {
+    margin: 0 auto;
+    max-width: 80rem;
+    width: 100%;
+    background-color: var(--blue-shade1);
+    min-height: 100%;
+}
+
+main > nav {
+    width: 100%;
+    background-color: white;
+}
+main > nav > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+main > nav > ul > li > button {
+    padding: 1em;
+    font-size: 1.125em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    background-color: white;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+}
+main > nav > ul > li > button.active {
+    background-color: var(--blue-shade1);
+}
+main > nav > ul > li > button:hover {
+    background-color: var(--gray);
+}
+main > nav > ul > li > button.active:hover {
+    background-color: var(--blue-shade2);
+}
+
+section {
+    display: none;
+    padding: 1em;
+}
+
+section.active {
+    display: block;
+}

@@ -1,0 +1,10 @@
+#game--datetime {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green-shade3);
+}
+#game--datetime > * {
+    padding: 1em;
+}

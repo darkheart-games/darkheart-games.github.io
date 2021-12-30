@@ -1,0 +1,6 @@
+header > h1 {
+    width: 100%;
+    text-align: center;
+    color: var(--blue-shade3);
+    padding: 1em 0;
+}
