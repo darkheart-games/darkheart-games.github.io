@@ -2,7 +2,6 @@ main {
     margin: 0 auto;
     max-width: 80rem;
     width: 100%;
-    background-color: var(--blue-shade1);
     min-height: 100%;
 }
 
@@ -17,6 +16,9 @@ main > nav > ul {
     justify-content: space-evenly;
     align-items: center;
 }
+main > nav > ul > li {
+    width: 100%;
+}
 main > nav > ul > li > button {
     padding: 1em;
     font-size: 1.125em;
@@ -25,22 +27,103 @@ main > nav > ul > li > button {
     border: 0;
     border-radius: 0;
     outline: none;
+    width: 100%;
 }
 main > nav > ul > li > button.active {
-    background-color: var(--blue-shade1);
-}
-main > nav > ul > li > button:hover {
-    background-color: var(--gray);
-}
-main > nav > ul > li > button.active:hover {
-    background-color: var(--blue-shade2);
+    background-color: var(--blue-shade3);
+    color: white
 }
 
 section {
     display: none;
     padding: 1em;
+    border: 2px solid var(--blue-shade3);
 }
 
 section.active {
     display: block;
+}
+
+
+
+section.active button {
+    padding: .75em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    background-color: var(--darkGray);
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    color: white;
+    transition: background-color .3s ease-in-out, color .4s ease-in-out, transform .1s ease-in-out;
+}
+section.active button.cta {
+    color: black;
+    background-color: var(--green-shade2);
+}
+section.active button:disabled {
+    background-color: var(--gray);
+    color: var(--darkGray);
+}
+section.active button:active {
+    transform: scale(.95);
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.inline-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.auto-margin {
+    margin: 2em 0;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    border-radius: 5px;
+    background-color: var(--lightGray);
+    margin: 1em;
+}
+.card:first-child {
+    margin-left: 0;
+}
+.card > span:last-child {
+    font-size: 1.5em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    margin-top: .75em;
+}
+.card > div:last-child {
+    font-size: 1em;
+    margin-top: .5em;
+}
+
+#display--price--per-roll {
+    margin: 0 1em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+}
+#display--shop--products {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style-type: none;
+}
+#display--shop--products > li {
+    width: 100%;
+    padding: 1em;
+    border-bottom: 2px solid var(--blue-shade3);
+}
+#display--shop--products > li:last-child {
+    border-bottom: none;
 }

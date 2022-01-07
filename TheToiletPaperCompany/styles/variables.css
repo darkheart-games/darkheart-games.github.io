@@ -12,12 +12,13 @@
     --violet: #b05670;
     --pink: #ffad93;
     --white: #ffffff;
+    --lightGray: #dddadd;
     --gray: #acaaac;
     --darkGray: #626562;
     --black: #000000;
 
-    --color-darkesGreen: #0f380f;
+    --color-darkestGreen: #0f380f;
     --color-darkGreen: #306230;
     --color-lightGreen: #8bac0f;
-    --color-lightestGreen: #9bbc0f
+    --color-lightestGreen: #9bbc0f;
 }
