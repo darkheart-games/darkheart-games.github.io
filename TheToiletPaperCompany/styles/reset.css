@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+body > * {
+    width: 100%;
+    max-width: 90rem;
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-weight: 400;
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;

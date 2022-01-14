@@ -12,7 +12,7 @@
 1.  Add color options and market change
 2.  Add option to select how many layers (sheet ply's) a roll should have
 3.  grow your own trees
-4.  First start to buy wood fron vendors
+4.  First start to buy wood from vendors
 5.  Buy small trees, are cheaper but you need to wait time to use them
 6.  Be able to buy 6er 10er 12er packs in the shop to sell multiple rolls at once
 

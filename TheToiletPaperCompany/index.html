@@ -10,18 +10,60 @@
         <link href="./styles/header.css" rel="stylesheet" />
         <link href="./styles/status.css" rel="stylesheet" />
         <link href="./styles/main.css" rel="stylesheet" />
+        <link href="./styles/popup.css" rel="stylesheet" />
     </head>
     <body>
+
+        <aside id="display--popup">
+            <div id="display--popup--container">
+            </div>
+        </aside>
+
         <header>
-            <h1>The Toilet Paper Company</h1>
-            <div id="display--tp-roll--container">
-                <button class="img-btn" onclick="createTPRoll(1)">
-                    <img src="assets/ToiletPaperRoll.png" alt="TP Icon" />
-                </button>
+            <div>
+                <button id="btn--shop">Shop</button>
+                <h1>The Toilet Paper Company</h1>
+                <button id="btn--farm">Farm</button>
             </div>
         </header>
 
         <main>
+            <section id="vc--clicker" class="active">
+                <div id="display--tp-roll--container">
+                    <button class="img-btn" onclick="createTPRoll(1)">
+                        <img src="assets/ToiletPaperRoll.png" alt="TP Icon" />
+                    </button>
+                </div>
+            </section>
+
+            <section id="vc--farm">
+                <div id="tilemap" style="display:none">
+                    <img id="tilemap-trees" src="./assets/trees_tilemap.png" alt="Trees Tilemap" />
+                    <img id="tilemap-shadow" src="./assets/shadow_tilemap.png" alt="Shadow Tilemap" />
+                    <img id="tilemap-ground" src="./assets/ground_tilemap.png" alt="Ground Tilemap" />
+                    <img id="spritesheet-ground" src="./assets/spritesheet_ground.png" alt="Ground Spritesheet" />
+                    <img id="spritesheet-trees" src="./assets/spritesheet_trees.png" alt="Trees Spritesheet" />
+                    <img id="spritesheet-shadow" src="./assets/spritesheet_shadow.png" alt="Shadow Spritesheet" />
+                </div>
+
+                <div id="farm-container">
+                    <canvas id="canvas-world-layer"></canvas>
+                    <canvas id="canvas-shadow-layer"></canvas>
+                    <canvas id="canvas-tree-layer"></canvas>
+                    <div id="farm-controls"></div>
+                </div>
+            </section>
+
+            <section id="vc--shop">
+                <ul id="display--shop--products">
+                    <li>
+                        <h3>Shop could not be loaded!</h3>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
             <div id="game--status">
                 <div>
                     <img src="./assets/Money.png" alt="Money Icon" />
@@ -33,8 +75,8 @@
                 <div>
                     <img src="./assets/ToiletPaperRoll.png" alt="TP Icon" />
                     <ul>
-                        <li>Total Rolls<span id="status--rolls-total">222</span></li>
-                        <li>Rolls<span id="status--rolls-available">256</span></li>
+                        <li>Total<span id="status--rolls-total">222</span></li>
+                        <li>Rolls<span id="display--storage--tp">256</span></li>
                     </ul>
                 </div>
                 <div>
@@ -55,82 +97,33 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <nav>
-                <ul>
-                    <li><button id="btn--inventory" class="active">Dashboard</button></li>
-                    <li><button id="btn--farm">Farm</button></li>
-                    <li><button id="btn--shop">Shop</button></li>
-                </ul>
-            </nav>
-            <section id="vc--farm">
-                <h2>Farm</h2>
-                <!--
-                    If user has no farm, display Buy Farm xxxxxx$
-
-                    If user has farm lvl 1, display expand farm xxxxx$
-                    and display farm with specific lvl
-
-                    lvl 1
-                    5 trees
-
-                    lvl 2
-                    10 trees
-
-                    lvl 3
-                    25 trees
-
-                    lvl 4
-                    50 trees
-                -->
-            </section>
-            <section id="vc--inventory" class="active">
-                <div class="auto-margin">
-                    <h3>Trees</h3>
-                    <div class="inline-start">
-                        <p class="card"><span>Storage</span><span id="display--storage--trees">2/4</span></p>
-                        <p class="card"><span>Rolls possible</span><span id="display--possible-rolls">800</span></p>
-                    </div>
+                <div>
+                    <img src="./assets/Factory.png" alt="Factory Icon" />
+                    <ul>
+                        <li>Factories<span id="display--factories--quantity">222</span></li>
+                        <li>Level<span id="display--factories--efficiency">2</span></li>
+                    </ul>
                 </div>
-                <div class="auto-margin">
-                    <h3>Toilet Paper Rolls</h3>
-                    <div class="inline-start">
-                        <p class="card"><span>Storage</span><span id="display--storage--tp">20/1000</span></p>
-                        <div class="card">
-                            <p>Price</p>
-                            <div class="inline">
-                                <button onclick="lowerPricePerRoll()">lower</button>
-                                <p><span id="display--price--per-roll"></span></p>
-                                <button onclick="raisePricePerRoll()">raise</button>
-                            </div>
+                <div>
+                    <img src="./assets/Wood_Logs.png" alt="Factory Icon" />
+                    <ul>
+                        <li>Trees<span id="display--storage--trees">222</span></li>
+                        <li>Rolls<span id="display--possible-rolls">2</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <div id="price-per-roll-container">
+                        <p>Price per Roll</p>
+                        <div id="game--datetime--controls">
+                            <button onclick="lowerPricePerRoll()">lower</button>
+                            <p><span id="display--price--per-roll"></span></p>
+                            <button onclick="raisePricePerRoll()">raise</button>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="auto-margin">
-                    <h3>Factories</h3>
-                    <div class="inline-start">
-                        <p class="card"><span>Quantity</span><span id="display--factories--quantity">3</span></p>
-                        <p class="card"><span>Efficiency</span><span id="display--factories--efficiency">3</span></p>
-                    </div>
-                </div>
-            </section>
-            <section id="vc--shop">
-                <ul id="display--shop--products">
-                    <li>
-                        <h3>Shop could not be loaded!</h3>
-                    </li>
-                </ul>
-                <!--
-                    Shop
-                    buy trees
-                    buy upgrades to your factory
-                -->
-            </section>
-        </main>
-
-        <footer>
-
+            </div>
+            <button onclick="resetData()">Reset Game</button>
         </footer>
 
         <script src="./main.js"></script>

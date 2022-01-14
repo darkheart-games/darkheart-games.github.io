@@ -1,48 +1,135 @@
 main {
-    margin: 0 auto;
-    max-width: 80rem;
-    width: 100%;
-    min-height: 100%;
+    margin: auto;
 }
 
-main > nav {
-    width: 100%;
-    background-color: white;
+section#vc--clicker,
+section#vc--farm,
+section#vc--shop {
+    display: none;
+    padding: 1em;
 }
-main > nav > ul {
-    list-style-type: none;
+section#vc--farm.active,
+section#vc--shop.active {
+    display: block;
+}
+
+/*
+VIEW CLICKER
+*/
+
+#vc--clicker.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#vc--clicker > #display--tp-roll--container > button {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    z-index: 10;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: .75em;
+    transform: scale(1.4);
+    transition: transform .1s ease-in-out;
+}
+#vc--clicker > #display--tp-roll--container > button:active {
+    transform: scale(1.3);
+}
+#vc--clicker > #display--tp-roll--container > p {
+    position: absolute;
+    z-index: 5;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    color: var(--brown-shade2);
+    animation: fadeAway 1.5s 1;
+}
+
+@keyframes fadeAway {
+    100% {
+        top: 20%;
+        opacity: 0;
+    }
+}
+
+/*
+VIEW FARM
+*/
+
+#farm-container {
+    position: relative;
+    width: 100%;
+}
+#canvas-shadow-layer,
+#canvas-tree-layer {
+    position: absolute;
+    left: 0;
+    z-index: 5;
+    top: -16px;
+}
+#canvas-tree-layer {
+    z-index: 6;
+}
+#farm-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+#farm-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+}
+#farm-controls > * {
+    margin: 1em;
+    width: 100%;
+}
+#farm-controls > *:first-child {
+    margin-top: 0;
+}
+#farm-controls > *:last-child {
+    margin-bottom: 0;
+}
+
+
+
+/*
+GAME STATUS BAR
+*/
+
+footer > #game--status {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
 }
-main > nav > ul > li {
-    width: 100%;
-}
-main > nav > ul > li > button {
+footer > #game--status > * {
+    width: calc(100% / 3);
     padding: 1em;
-    font-size: 1.125em;
+}
+#price-per-roll-container > p {
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-    background-color: white;
-    border: 0;
-    border-radius: 0;
-    outline: none;
+    padding: .45em;
     width: 100%;
+    text-align: center;
 }
-main > nav > ul > li > button.active {
-    background-color: var(--blue-shade3);
-    color: white
-}
-
-section {
-    display: none;
-    padding: 1em;
-    border: 2px solid var(--blue-shade3);
+#display--price--per-roll {
+    margin: 0 1em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
 }
 
-section.active {
-    display: block;
-}
+
+
+
+
+
 
 
 
@@ -68,50 +155,8 @@ section.active button:active {
     transform: scale(.95);
 }
 
-.inline {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.inline-start {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.auto-margin {
-    margin: 2em 0;
-}
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 1em;
-    border-radius: 5px;
-    background-color: var(--lightGray);
-    margin: 1em;
-}
-.card:first-child {
-    margin-left: 0;
-}
-.card > span:last-child {
-    font-size: 1.5em;
-    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-    margin-top: .75em;
-}
-.card > div:last-child {
-    font-size: 1em;
-    margin-top: .5em;
-}
 
-#display--price--per-roll {
-    margin: 0 1em;
-    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-}
+
 #display--shop--products {
     display: flex;
     flex-direction: column;
@@ -127,3 +172,22 @@ section.active button:active {
 #display--shop--products > li:last-child {
     border-bottom: none;
 }
+
+.loading-container {
+    width: 100%;
+    height: 1em;
+    transition: width .3s ease-in-out;
+    margin-top: auto;
+    border-radius: 3px;
+    padding: .125em;
+    border: 2px solid wheat;
+}
+.loading {
+    height: 100%;
+    background-color: brown;
+    transition: width .3s ease-in-out;
+    border-radius: 2px;
+}
+
+
+

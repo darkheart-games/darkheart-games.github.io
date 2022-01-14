@@ -1,0 +1,52 @@
+aside#display--popup {
+    display: none;
+}
+aside#display--popup.show {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    background-color: rgba(0,0,0,.4);
+}
+
+#display--popup--container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1em;
+}
+#display--popup--container > h2 {
+    width: 100%;
+    line-height: 1.5em;
+}
+#display--popup--container > p {
+    width: 100%;
+    line-height: 1.5em;
+    padding: .8em 0;
+    text-align: justify;
+}
+#display--popup--container > button {
+    margin-left: auto;
+    padding: .75em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    color: black;
+    background-color: var(--green-shade2);
+    transition: background-color .3s ease-in-out, color .4s ease-in-out, transform .1s ease-in-out;
+}
+#display--popup--container > img + h2{
+    margin-top: .5em;
+    padding-top: .5em;
+    border-top: 1px solid var(--blue-shade3);
+}
