@@ -23,6 +23,19 @@ VIEW CLICKER
     justify-content: center;
     align-items: center;
 }
+#vc--clicker > #display--tp-roll--container {
+    background-color: rgba(242,242,238, .6);
+    border-radius: 50%;
+    padding: calc(2em + 5px) 2em calc(2em - 5px) 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .2s ease-in-out;
+}
+#vc--clicker > #display--tp-roll--container:active {
+    background-color: rgba(242,242,238, .2);
+}
 #vc--clicker > #display--tp-roll--container > button {
     border: 0;
     outline: 0;
@@ -31,9 +44,18 @@ VIEW CLICKER
     background-color: transparent;
     outline: none;
     border: none;
-    padding: .75em;
-    transform: scale(1.4);
+    transform: scale(1.6);
     transition: transform .1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#vc--clicker > #display--tp-roll--container > button > img {
+    object-fit: none;
+    width: 64px;
+    height: 64px;
+    object-position: -192px 0;
 }
 #vc--clicker > #display--tp-roll--container > button:active {
     transform: scale(1.3);
@@ -84,6 +106,7 @@ VIEW FARM
     justify-content: flex-start;
     align-items: center;
     margin: 0 auto;
+    padding: 3em 0;
 }
 #farm-controls > * {
     margin: 1em;
@@ -94,6 +117,40 @@ VIEW FARM
 }
 #farm-controls > *:last-child {
     margin-bottom: 0;
+}
+#farm-controls > button {
+    border: 0;
+    background: url("../assets/spritesheet_icons.png") 0 128px;
+    min-width: 256px;
+    max-width: 256px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    color: white;
+    text-shadow: 0 0 1px var(--blue-shade3);
+}
+#farm-controls > button:disabled {
+    filter: grayscale();
+}
+#farm-controls > button > p {
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    font-size: .9em;
+    padding: .25em 0;
+}
+#farm-controls > button > img {
+    width: 64px;
+    height: 64px;
+    object-fit: none;
+    margin-bottom: .5em;
+}
+#farm-controls > button > img.plant {
+    object-position: -128px 0;
+}
+#farm-controls > button > img.harvest {
+    object-position: -256px 0;
 }
 
 
@@ -106,13 +163,43 @@ footer > #game--status {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-end;
     flex-wrap: wrap;
+    padding: 1em 0;
+    font-size: .85em;
+    border-bottom: 3px solid #b38d59;
+    margin-bottom: 1em;
 }
 footer > #game--status > * {
-    width: calc(100% / 3);
-    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("../assets/spritesheet_icons.png") -256px -64px;
+    min-width: 256px;
+    max-width: 256px;
+    height: 192px;
+}
+#game--status > div > img {
+    margin-bottom: 1.5em;
+}
+
+#game--status > div > ul {
+    list-style-type: none;
+}
+#game--status > div p > span,
+#game--status > div li {
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    padding: .25em;
+    color: var(--brown-shade1);
+    text-shadow: none;
+}
+#game--status > div span,
+#game--status > div > ul > li > span {
+    color: white;
+    text-shadow: 0 0 1px var(--blue-shade3);
+    padding: 0 0 0 .5em;
 }
 #price-per-roll-container > p {
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
@@ -125,9 +212,47 @@ footer > #game--status > * {
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
 }
 
+footer > button {
+    background: url("../assets/spritesheet_icons.png") 0 -64px;
+    min-width: 256px;
+    max-width: 256px;
+    height: 64px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    color: var(--brown-shade1)
+}
+
+#status--container--money > img,
+#status--container--tprolls > img,
+#status--container--datetime > img,
+#status--container--factories > img,
+#status--container--trees > img {
+    width: 64px;
+    height: 64px;
+    object-fit: none;
+    margin-bottom: .5em;
+}
 
 
-
+#status--container--money > img {
+    object-position: -448px 0;
+}
+#status--container--tprolls > img {
+    object-position: -192px 0;
+}
+#status--container--datetime > img {
+    object-position: -320px 0;
+}
+#status--container--factories > img {
+    object-position: -512px 0;
+}
+#status--container--trees > img {
+    object-position: -384px 0;
+}
 
 
 

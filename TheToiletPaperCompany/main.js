@@ -308,9 +308,13 @@ const buttonGameSpeedPlus = document.getElementById("game--speed--plus");
 const buttonShowInventory = document.getElementById("btn--inventory");
 const buttonShowFarm = document.getElementById("btn--farm");
 const buttonShowShop = document.getElementById("btn--shop");
+const buttonHideFarm = document.getElementById("btn--farm-close");
+const buttonHideShop = document.getElementById("btn--shop-close");
 const buttonFarmLvlUp = document.getElementById("btn--farm--lvl-up");
 const buttonFarmBuyTree = document.getElementById("btn--farm--buy-tree");
 
+const displayViewTitleShop = document.getElementById("view-title--shop");
+const displayViewTitleFarm = document.getElementById("view-title--farm");
 const displayPopup = document.getElementById("display--popup");
 const displayPopupContainer = document.getElementById("display--popup--container");
 const displayTPRollContainer = document.getElementById("display--tp-roll--container");
@@ -330,9 +334,6 @@ const displayFactoriesEfficiency = document.getElementById("display--factories--
 const displayFarmControls = document.getElementById("farm-controls");
 const displayFarmContainer = document.getElementById("farm-container");
 
-const tilemapTrees = document.getElementById("tilemap-trees");
-const tilemapShadow = document.getElementById("tilemap-shadow");
-const tilemapGround = document.getElementById("tilemap-ground");
 const spritesheetGround = document.getElementById("spritesheet-ground");
 const spritesheetTrees = document.getElementById("spritesheet-trees");
 const spritesheetShadow = document.getElementById("spritesheet-shadow");
@@ -340,6 +341,8 @@ const spritesheetShadow = document.getElementById("spritesheet-shadow");
 const vcClicker = document.getElementById("vc--clicker");
 const vcFarm = document.getElementById("vc--farm");
 const vcShop = document.getElementById("vc--shop");
+
+const masterBody = document.getElementById("body");
 
 // GET DOM ELEMENTS
 // SETUP FUNCTIONS
@@ -635,12 +638,20 @@ const renderFarmControls = () => {
     if (FARM_DATA.lvl > 0) {
 
         displayFarmControls.innerHTML = `
-            <button onclick="plantTrees(1)" ${PLAYER_DATA.money < 100 || getFarmSpaces() - FARM_DATA.treeData.length <= 0 ? "disabled" : ""}>Plant tree [100$]</button>
+            <button onclick="plantTrees(1)" ${PLAYER_DATA.money < 100 || getFarmSpaces() - FARM_DATA.treeData.length <= 0 ? "disabled" : ""}>
+                <img class="plant" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                <p>Plant 1 tree</p>
+                <p>[100$]</p>
+            </button>
         `;
 
         if (getFarmSpaces() - FARM_DATA.treeData.length > 1) {
             displayFarmControls.innerHTML += `
-                <button onclick="plantTrees(${getFarmSpaces() - FARM_DATA.treeData.length})">Plant ${getFarmSpaces() - FARM_DATA.treeData.length} trees [${(getFarmSpaces() - FARM_DATA.treeData.length) * 100}$]</button>
+                <button onclick="plantTrees(${getFarmSpaces() - FARM_DATA.treeData.length})" ${PLAYER_DATA.money < (getFarmSpaces() - FARM_DATA.treeData.length) * 100 ? "disabled" : ""}>
+                    <img class="plant" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                    <p>Plant ${getFarmSpaces() - FARM_DATA.treeData.length} trees</p>
+                    <p>[${(getFarmSpaces() - FARM_DATA.treeData.length) * 100}$]</p>
+                </button>
             `;
         }
 
@@ -653,7 +664,10 @@ const renderFarmControls = () => {
 
         if (treeHarvestCounter > 0) {
             displayFarmControls.innerHTML += `
-                <button onclick="harvestTrees(${treeHarvestCounter})">Harvest ${treeHarvestCounter} trees</button>
+                <button onclick="harvestTrees(${treeHarvestCounter})" ${calcTreeStorageTotal() - Math.ceil((PLAYER_DATA.rollsFromTree) / calcMaxRollsFromTree()) <= 0 ? "disabled" : ""}>
+                    <img class="harvest" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                    <p>Harvest all trees</p>
+                </button>
             `;
         }
     }
@@ -890,13 +904,16 @@ const showEventPopup = gameEvent => {
         <p>${gameEvent.description}</p>
         <button onclick="hidePopup()">Ok</button>
     `;
-    console.log(content)
     displayPopupContainer.innerHTML = content;
 }
 
 const hidePopup = () => {
-    displayPopup.classList = "";
-    GAME_PAUSED = false;
+    displayPopup.classList = "hide";
+    setTimeout(() => {
+        displayPopup.classList = "";
+        GAME_PAUSED = false;
+    }, 400);
+    
 }
 
 // SETUP FUNCTIONS
@@ -1036,53 +1053,64 @@ buttonGameSpeedPlus.addEventListener("click", () => {
 })
 
 buttonShowFarm.addEventListener("click", () => {
+    buttonShowFarm.classList = "hidden";
+    buttonShowShop.classList = "";
+    buttonHideFarm.classList = "";
+    buttonHideShop.classList = "hidden";
 
-    if (buttonShowFarm.classList.contains("active")) {
-        buttonShowFarm.classList = "";
-        buttonShowShop.classList = "";
+    displayViewTitleFarm.classList = "";
+    displayViewTitleShop.classList = "hidden";
 
-        vcFarm.classList = "";
-        vcShop.classList = "";
-        vcClicker.classList.add("active");
+    vcFarm.classList.add("active");
+    vcShop.classList = "";
+    vcClicker.classList = "";
 
-        buttonShowFarm.innerText = "Farm";
-    } else {
-        buttonShowFarm.classList.add("active");
-        buttonShowShop.classList = "";
-
-        vcFarm.classList.add("active");
-        vcShop.classList = "";
-        vcClicker.classList = "";
-
-        buttonShowShop.innerText = "Shop";
-        buttonShowFarm.innerText = "Close Farm";
-    }
-
+    masterBody.classList = "farm";
 })
+buttonHideFarm.addEventListener("click", () => {
+    buttonShowFarm.classList = "";
+    buttonShowShop.classList = "";
+    buttonHideFarm.classList = "hidden";
+    buttonHideShop.classList = "hidden";
 
+    displayViewTitleFarm.classList = "hidden";
+    displayViewTitleShop.classList = "hidden";
+
+    vcFarm.classList = "";
+    vcShop.classList = "";
+    vcClicker.classList.add("active");
+
+    masterBody.classList = "";
+})
 buttonShowShop.addEventListener("click", () => {
+    buttonShowFarm.classList = "";
+    buttonShowShop.classList = "hidden";
+    buttonHideFarm.classList = "hidden";
+    buttonHideShop.classList = "";
+    
+    displayViewTitleFarm.classList = "hidden";
+    displayViewTitleShop.classList = "";
 
-    if (buttonShowShop.classList.contains("active")) {
-        buttonShowFarm.classList = "";
-        buttonShowShop.classList = "";
+    vcFarm.classList = "";
+    vcShop.classList.add("active");
+    vcClicker.classList = "";
 
-        vcFarm.classList = "";
-        vcShop.classList = "";
-        vcClicker.classList.add("active");
+    masterBody.classList = "shop";
+})
+buttonHideShop.addEventListener("click", () => {
+    buttonShowFarm.classList = "";
+    buttonShowShop.classList = "";
+    buttonHideFarm.classList = "hidden";
+    buttonHideShop.classList = "hidden";
 
-        buttonShowShop.innerText = "Shop";
-    } else {
-        buttonShowShop.classList.add("active");
-        buttonShowFarm.classList = "";
+    displayViewTitleFarm.classList = "hidden";
+    displayViewTitleShop.classList = "hidden";
 
-        vcShop.classList.add("active");
-        vcFarm.classList = "";
-        vcClicker.classList = "";
+    vcFarm.classList = "";
+    vcShop.classList = "";
+    vcClicker.classList.add("active");
 
-        buttonShowFarm.innerText = "Farm";
-        buttonShowShop.innerText = "Close Shop";
-    }
-
+    masterBody.classList = "";
 })
 
 // EVENTLISTENERS
@@ -1112,6 +1140,7 @@ const gameStart = () => {
     setTimeout(updateLoop, 1000);
     setInterval(()=> {
         if (!GAME_PAUSED) {
+            renderFarmControls();
             updateShopDisplay()
             saveData()
         }

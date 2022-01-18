@@ -12,7 +12,7 @@
         <link href="./styles/main.css" rel="stylesheet" />
         <link href="./styles/popup.css" rel="stylesheet" />
     </head>
-    <body>
+    <body id="body">
 
         <aside id="display--popup">
             <div id="display--popup--container">
@@ -21,9 +21,15 @@
 
         <header>
             <div>
-                <button id="btn--shop">Shop</button>
-                <h1>The Toilet Paper Company</h1>
-                <button id="btn--farm">Farm</button>
+                <button id="btn--shop"><img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" /></button>
+                <button id="btn--shop-close" class="hidden">X</button>
+                <div>
+                    <h1>The Toilet Paper Company</h1>
+                    <h2 id="view-title--shop" class="hidden">Shop</h2>
+                    <h2 id="view-title--farm" class="hidden">Farm</h2>
+                </div>
+                <button id="btn--farm"><img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" /></button>
+                <button id="btn--farm-close" class="hidden">X</button>
             </div>
         </header>
 
@@ -31,16 +37,24 @@
             <section id="vc--clicker" class="active">
                 <div id="display--tp-roll--container">
                     <button class="img-btn" onclick="createTPRoll(1)">
-                        <img src="assets/ToiletPaperRoll.png" alt="TP Icon" />
+                        <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     </button>
+                </div>
+                <div>
+                    <div id="price-per-roll-container">
+                        <p>Price per Roll</p>
+                        <div id="game--datetime--controls">
+                            <button onclick="lowerPricePerRoll()">lower</button>
+                            <p><span id="display--price--per-roll"></span></p>
+                            <button onclick="raisePricePerRoll()">raise</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
 
             <section id="vc--farm">
                 <div id="tilemap" style="display:none">
-                    <img id="tilemap-trees" src="./assets/trees_tilemap.png" alt="Trees Tilemap" />
-                    <img id="tilemap-shadow" src="./assets/shadow_tilemap.png" alt="Shadow Tilemap" />
-                    <img id="tilemap-ground" src="./assets/ground_tilemap.png" alt="Ground Tilemap" />
                     <img id="spritesheet-ground" src="./assets/spritesheet_ground.png" alt="Ground Spritesheet" />
                     <img id="spritesheet-trees" src="./assets/spritesheet_trees.png" alt="Trees Spritesheet" />
                     <img id="spritesheet-shadow" src="./assets/spritesheet_shadow.png" alt="Shadow Spritesheet" />
@@ -65,22 +79,22 @@
 
         <footer>
             <div id="game--status">
-                <div>
-                    <img src="./assets/Money.png" alt="Money Icon" />
+                <div id="status--container--money">
+                    <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
                         <li>Money<span id="status--money">1000$</span></li>
                         <li>Marketing<span id="status--product-interest">80%</span></li>
                     </ul>
                 </div>
-                <div>
-                    <img src="./assets/ToiletPaperRoll.png" alt="TP Icon" />
+                <div id="status--container--tprolls">
+                    <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
                         <li>Total<span id="status--rolls-total">222</span></li>
                         <li>Rolls<span id="display--storage--tp">256</span></li>
                     </ul>
                 </div>
-                <div>
-                    <img src="./assets/Calendar.png" alt="Calendar Icon" />
+                <div id="status--container--datetime">
+                    <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <div>
                         <div id="game--datetime--display">
                             <p>
@@ -97,30 +111,19 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <img src="./assets/Factory.png" alt="Factory Icon" />
+                <div id="status--container--factories">
+                    <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
                         <li>Factories<span id="display--factories--quantity">222</span></li>
                         <li>Level<span id="display--factories--efficiency">2</span></li>
                     </ul>
                 </div>
-                <div>
-                    <img src="./assets/Wood_Logs.png" alt="Factory Icon" />
+                <div id="status--container--trees">
+                    <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
                         <li>Trees<span id="display--storage--trees">222</span></li>
                         <li>Rolls<span id="display--possible-rolls">2</span></li>
                     </ul>
-                </div>
-                <div>
-                    <div id="price-per-roll-container">
-                        <p>Price per Roll</p>
-                        <div id="game--datetime--controls">
-                            <button onclick="lowerPricePerRoll()">lower</button>
-                            <p><span id="display--price--per-roll"></span></p>
-                            <button onclick="raisePricePerRoll()">raise</button>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
             <button onclick="resetData()">Reset Game</button>

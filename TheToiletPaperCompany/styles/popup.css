@@ -1,7 +1,8 @@
 aside#display--popup {
     display: none;
 }
-aside#display--popup.show {
+aside#display--popup.show,
+aside#display--popup.hide {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -12,7 +13,30 @@ aside#display--popup.show {
     right: 0;
     bottom: 0;
     z-index: 15;
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0,0,0,.6);
+}
+aside#display--popup.show {
+    animation: fadeIn .7s ease-in-out;
+}
+aside#display--popup.hide {
+    animation: fadeOut .4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 #display--popup--container {
