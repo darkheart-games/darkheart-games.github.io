@@ -36,9 +36,9 @@ let EQUIPMENT_DATA = {
 }
 
 let PLAYER_DATA = {
-    globalTPRolls: 1000000,
+    globalTPRolls: 1_000_000,
     tpRolls: 0,
-    money: 1000000,
+    money: 1_000_000,
     rollsFromTree: 1600
 }
 
@@ -61,9 +61,9 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .35;
         },
-        img: "assets/ToiletPaperRoll.png",
-        title: "Top Christmas Presents",
-        description: "Toilet Paper is on the top of our christmas presents list. You need it probably every day, so why don't you gift it to your loved ones?"
+        img: "tp-roll",
+        title: "Top Christmas Present",
+        description: "Toilet Paper is on the top of the most wanted christmas presents this year. You need it probably every day, so why don't you gift it to your loved ones?"
     },
     {
         startDate: new Date(2020, 2, 1, 0, 0, 0, 0),
@@ -76,7 +76,7 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .35;
         },
-        img: "assets/ToiletPaperRoll.png",
+        img: "tp-roll",
         title: "Pandemic - People horde Toilet Paper",
         description: "The C-Virus hit the world. Everyone tries to hoard as much toilet paper as they can get. The needs for toilet paper are higher than usual."
     },
@@ -91,7 +91,7 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .1;
         },
-        img: "assets/ToiletPaperRoll.png",
+        img: "tp-roll",
         title: "Halloween - TP-ing Pranks",
         description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
     }
@@ -106,7 +106,7 @@ let SHOP_PRODUCTS = [
         name: "Tree",
         description: "A tree to produce toilet paper rolls from.",
         price: 500.00,
-        icon: ""
+        icon: "add-tree"
     },
     {
         id: 1,
@@ -116,7 +116,7 @@ let SHOP_PRODUCTS = [
         name: "Auto Factory",
         description: "Produces 1 toilet paper roll per second. Will get better after you upgrade the factory in the later game.",
         price: 50.00,
-        icon: ""
+        icon: "add-factory"
     },
     {
         id: 2,
@@ -126,7 +126,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Factory",
         description: "You will produce 2 rolls per second after upgrading your factories.",
         price: 2000.00,
-        icon: ""
+        icon: "upgrade-factory"
     },
     {
         id: 3,
@@ -136,7 +136,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Tree Storage 1",
         description: "Store more trees.",
         price: 200.00,
-        icon: ""
+        icon: "upgrade-treestorage"
     },
     {
         id: 4,
@@ -146,7 +146,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Tree Storage 2",
         description: "Store more trees.",
         price: 300.00,
-        icon: ""
+        icon: "upgrade-treestorage"
     },
     {
         id: 5,
@@ -156,7 +156,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Tree Storage 3",
         description: "Store more trees.",
         price: 500.00,
-        icon: ""
+        icon: "upgrade-treestorage"
     },
     {
         id: 6,
@@ -166,7 +166,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Tree Storage 4",
         description: "Store more trees.",
         price: 1000.00,
-        icon: ""
+        icon: "upgrade-treestorage"
     },
     {
         id: 7,
@@ -176,7 +176,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Toilet Paper Storage 1",
         description: "Store more trees.",
         price: 200.00,
-        icon: ""
+        icon: "upgrade-tpstorage"
     },
     {
         id: 8,
@@ -186,7 +186,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Toilet Paper Storage 2",
         description: "Store more trees.",
         price: 250.00,
-        icon: ""
+        icon: "upgrade-tpstorage"
     },
     {
         id: 9,
@@ -196,7 +196,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Toilet Paper Storage 3",
         description: "Store more trees.",
         price: 400.00,
-        icon: ""
+        icon: "upgrade-tpstorage"
     },
     {
         id: 10,
@@ -206,7 +206,7 @@ let SHOP_PRODUCTS = [
         name: "Upgrade Toilet Paper Storage 4",
         description: "Store more trees.",
         price: 750.00,
-        icon: ""
+        icon: "upgrade-tpstorage"
     },
     {
         id: 11,
@@ -216,7 +216,7 @@ let SHOP_PRODUCTS = [
         name: "Renewable Resources",
         description: "Get more rolls out of a tree.",
         price: 2500.00,
-        icon: ""
+        icon: "renewable-resources"
     },
     {
         id: 12,
@@ -226,7 +226,7 @@ let SHOP_PRODUCTS = [
         name: "Colorfull Rolls",
         description: "Create colorfull toilet paper rolls to spice things up.",
         price: 500.00,
-        icon: ""
+        icon: "marketing-colorfull"
     },
     {
         id: 13,
@@ -236,7 +236,7 @@ let SHOP_PRODUCTS = [
         name: "Multi Sheet ply",
         description: "Increase sheet ply to make the toilet paper comfy. The needed resources will not be increased. You found out how to get more toilet paper from a tree.",
         price: 1000.00,
-        icon: ""
+        icon: "marketing-multisheet"
     },
     {
         id: 14,
@@ -246,7 +246,7 @@ let SHOP_PRODUCTS = [
         name: "Toilet Paper Multi Pack 8",
         description: "Sell 8 toilet paper rolls in a pack to get more sales.",
         price: 2500.00,
-        icon: ""
+        icon: "tp-pack"
     },
     {
         id: 15,
@@ -256,7 +256,7 @@ let SHOP_PRODUCTS = [
         name: "Toilet Paper Multi Pack 12",
         description: "Sell 12 toilet paper rolls in a pack to get more sales.",
         price: 5000.00,
-        icon: ""
+        icon: "tp-pack"
     },
     {
         id: 16,
@@ -266,7 +266,7 @@ let SHOP_PRODUCTS = [
         name: "Tree Farm",
         description: "Grow your own Trees and save some money. You can plant 5 trees. You can level the farm up to be able to plant more trees..",
         price: 4000.00,
-        icon: ""
+        icon: "add-treefarm"
     },
     {
         id: 17,
@@ -276,7 +276,7 @@ let SHOP_PRODUCTS = [
         name: "Tree Farm Upgrade 1",
         description: "You are able to plant 10 trees.",
         price: 6000.00,
-        icon: ""
+        icon: "upgrade-treefarm"
     },
     {
         id: 18,
@@ -286,7 +286,7 @@ let SHOP_PRODUCTS = [
         name: "Tree Farm Upgrade 2",
         description: "You are able to plant 25 trees.",
         price: 9000.00,
-        icon: ""
+        icon: "upgrade-treefarm"
     },
     {
         id: 19,
@@ -296,7 +296,7 @@ let SHOP_PRODUCTS = [
         name: "Tree Farm Upgrade 3",
         description: "You are able to plant 50 trees.",
         price: 14000.00,
-        icon: ""
+        icon: "upgrade-treefarm"
     }
 ]
 
@@ -312,6 +312,9 @@ const buttonHideFarm = document.getElementById("btn--farm-close");
 const buttonHideShop = document.getElementById("btn--shop-close");
 const buttonFarmLvlUp = document.getElementById("btn--farm--lvl-up");
 const buttonFarmBuyTree = document.getElementById("btn--farm--buy-tree");
+const buttonDecreasePrice = document.getElementById("btn--decrease-price");
+const buttonIncreasePrice = document.getElementById("btn--increase-price");
+const buttonCreateTPRoll = document.getElementById("btn--create-tpr");
 
 const displayViewTitleShop = document.getElementById("view-title--shop");
 const displayViewTitleFarm = document.getElementById("view-title--farm");
@@ -412,6 +415,22 @@ const readableDateString = date => {
     return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 }
 
+const readableNumber = (num, dec, roundDec) => {
+    let formatedNumber;
+    
+    switch (true) {
+        case num / 1000000 > 0.999:
+            formatedNumber = Math.round((num / 1000000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}M`;
+        case num / 1000 > 0.999:
+            formatedNumber = Math.round((num / 1000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}k`;
+        default:
+            formatedNumber = Math.round((num + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(dec)}`;
+    }
+}
+
 const updateGameTime = () => {
     DATETIME.time -= 1;
 
@@ -425,13 +444,13 @@ const updateGameTime = () => {
 const lowerPricePerRoll = () => {
     PRICE_PER_ROLL -= 0.01;
     PRICE_PER_ROLL = Math.round((PRICE_PER_ROLL + Number.EPSILON) * 100) / 100;
-    displayPricePerRoll.innerText = `${PRICE_PER_ROLL}$`
+    displayPricePerRoll.innerText = `${readableNumber(PRICE_PER_ROLL, 2, 0)}$`
     checkProductInterest();
 }
 const raisePricePerRoll = () => {
     PRICE_PER_ROLL += 0.01;
     PRICE_PER_ROLL = Math.round((PRICE_PER_ROLL + Number.EPSILON) * 100) / 100;
-    displayPricePerRoll.innerText = `${PRICE_PER_ROLL}$`
+    displayPricePerRoll.innerText = `${readableNumber(PRICE_PER_ROLL, 2, 0)}$`
     checkProductInterest();
 }
 
@@ -650,7 +669,7 @@ const renderFarmControls = () => {
                 <button onclick="plantTrees(${getFarmSpaces() - FARM_DATA.treeData.length})" ${PLAYER_DATA.money < (getFarmSpaces() - FARM_DATA.treeData.length) * 100 ? "disabled" : ""}>
                     <img class="plant" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <p>Plant ${getFarmSpaces() - FARM_DATA.treeData.length} trees</p>
-                    <p>[${(getFarmSpaces() - FARM_DATA.treeData.length) * 100}$]</p>
+                    <p>[${readableNumber((getFarmSpaces() - FARM_DATA.treeData.length) * 100, 0, 1)}$]</p>
                 </button>
             `;
         }
@@ -805,33 +824,50 @@ const getCurrentGroundTileXY = id => {
 const updateShopDisplay = () => {
 
     let shopContent = "";
+    let dummyID = "";
+    let filteredShopArray = SHOP_PRODUCTS.filter((product) => {
+        if (product.quantity === 0 && product.maxQuantity === 1 && product.icon !== dummyID) {
+            dummyID = product.icon;
+            return product; 
+        } else if (product.icon === dummyID) {
+            return null;
+        } else {
+            return product;
+        }
+    });
 
-    for (let i = 0; i < SHOP_PRODUCTS.length; i++) {
-        if (SHOP_PRODUCTS[i].isVisible <= PLAYER_DATA.globalTPRolls && (SHOP_PRODUCTS[i].maxQuantity > SHOP_PRODUCTS[i].quantity || SHOP_PRODUCTS[i].maxQuantity == undefined)) {
+    for (let i = 0; i < filteredShopArray.length; i++) {
+        if (filteredShopArray[i].isVisible <= PLAYER_DATA.globalTPRolls && (filteredShopArray[i].maxQuantity > filteredShopArray[i].quantity || filteredShopArray[i].maxQuantity == undefined)) {
             
-            let price = SHOP_PRODUCTS[i].price;
+            let price = filteredShopArray[i].price;
             let disabledBtn = "";
             let className = "cta";
 
-            if (SHOP_PRODUCTS[i].id === 0) {
+            if (filteredShopArray[i].id === 0) {
                 if (Math.ceil(PLAYER_DATA.rollsFromTree / calcMaxRollsFromTree()) >= calcTreeStorageTotal()) {
                     disabledBtn = "disabled";
                 }
             }
-            if (SHOP_PRODUCTS[i].id === 1) {
-                price = 100 * (SHOP_PRODUCTS[i].quantity + 1);
-                SHOP_PRODUCTS[i].price = price;
+            if (filteredShopArray[i].id === 1) {
+                price = 100 * (filteredShopArray[i].quantity + 1);
+                filteredShopArray[i].price = price;
             }
-            if (SHOP_PRODUCTS[i].price > PLAYER_DATA.money) {
+            if (filteredShopArray[i].price > PLAYER_DATA.money) {
                 disabledBtn = "disabled";
                 className = "";
             }
 
             shopContent += `<li>
-                <h3>${SHOP_PRODUCTS[i].name}</h3>
-                <p>${SHOP_PRODUCTS[i].description}</p>
-                <p>Price: <span>${price}$</span></p>
-                <button class="${className}" onClick="buyProduct(${SHOP_PRODUCTS[i].id})" ${disabledBtn}>Buy</button>
+                <div>
+                    <div></div>
+                    <img class="${filteredShopArray[i].icon}" src="assets/spritesheet_icons.png" alt="spritesheet icons" />
+                    <p><span>${readableNumber(filteredShopArray[i].price, 0, 1)}$</span></p>
+                </div>
+                <div>
+                    <h3>${filteredShopArray[i].name}</h3>
+                    <p>${filteredShopArray[i].description}</p>
+                    <button class="${className}" onClick="buyProduct(${filteredShopArray[i].id})" ${disabledBtn}>Buy</button>
+                </div>
             </li>`
         }
     }
@@ -897,12 +933,22 @@ const showEventPopup = gameEvent => {
     displayPopup.classList = "show";
     let content = "";
     if (gameEvent.img != null && gameEvent.img.length > 0) {
-        content += `<img src="${gameEvent.img}" alt="${gameEvent.title}" />`;
+        content += `
+            <div id="display--popup--container--img-wrapper">
+                <img class="${gameEvent.img}" src="assets/spritesheet_events.png" alt="Event Spritesheet">
+            </div>
+        `;
     }
     content += `
-        <h2>${gameEvent.title}</h2>
-        <p>${gameEvent.description}</p>
-        <button onclick="hidePopup()">Ok</button>
+        <div id="display--popup--container-wrapper">
+            <div id="display--popup--container--text-wrapper">
+                <h2>${gameEvent.title}</h2>
+                <p>${gameEvent.description}</p>
+            </div>
+            <div id="display--popup--container--controls-wrapper">
+                <button onclick="hidePopup()">Ok</button>
+            </div>
+        </div>
     `;
     displayPopupContainer.innerHTML = content;
 }
@@ -997,20 +1043,38 @@ const checkProduct = productID => {
 const checkUIElements = () => {
     displayGameDate.innerText = readableDateString(DATETIME.date);
     displayGameSpeed.innerText = `x${SETTINGS.daySpeed}`; 
-    displayMoney.innerText = `${PLAYER_DATA.money}$`;
+    displayMoney.innerText = `${readableNumber(PLAYER_DATA.money, 2, 1)}$`;
     displayProductInterest.innerText = `${MARKETING_DATA.productInteresed}%`;
-    displayTotalRolls.innerText = `${PLAYER_DATA.globalTPRolls}`;
+    displayTotalRolls.innerText = `${readableNumber(PLAYER_DATA.globalTPRolls, 0, 1)}`;
     displayStorageTrees.innerText = `${Math.ceil(PLAYER_DATA.rollsFromTree / calcMaxRollsFromTree())}/${calcTreeStorageTotal()}`;
-    displayPossibleRolls.innerText = `${PLAYER_DATA.rollsFromTree}`;
-    displayStorageTP.innerText = `${PLAYER_DATA.tpRolls}/${calcTPStorageTotal()}`;
-    displayFactoriesQuantity.innerText = `${SHOP_PRODUCTS[1].quantity}`;
+    displayPossibleRolls.innerText = `${readableNumber(PLAYER_DATA.rollsFromTree, 0, 1)}`;
+    displayStorageTP.innerText = `${readableNumber(PLAYER_DATA.tpRolls, 0, 1)}/${readableNumber(calcTPStorageTotal(), 0, 0)}`;
+    displayFactoriesQuantity.innerText = `${readableNumber(SHOP_PRODUCTS[1].quantity, 0, 1)}`;
     displayFactoriesEfficiency.innerText = `${EQUIPMENT_DATA.multiplier}`;
-    displayPricePerRoll.innerText = `${PRICE_PER_ROLL}$`
+    displayPricePerRoll.innerText = `${readableNumber(PRICE_PER_ROLL, 2, 0)}$`
 
     if (SHOP_PRODUCTS[16].quantity > 0) {
         buttonShowFarm.disabled = false;
     } else {
         buttonShowFarm.disabled = true;
+    }
+
+    if (MARKETING_DATA.productInteresed <= 0) {
+        buttonIncreasePrice.disabled = true;
+    } else if (MARKETING_DATA.productInteresed > 0 && buttonIncreasePrice.disabled) {
+        buttonIncreasePrice.disabled = false;
+    }
+
+    if (PRICE_PER_ROLL <= 0) {
+        buttonDecreasePrice.disabled = true;
+    } else if (PRICE_PER_ROLL > 0 && buttonDecreasePrice.disabled) {
+        buttonDecreasePrice.disabled = false;
+    }
+
+    if (PLAYER_DATA.tpRolls >= calcTPStorageTotal()) {
+        buttonCreateTPRoll.disabled = true;
+    } else if (PLAYER_DATA.tpRolls < calcTPStorageTotal() && buttonCreateTPRoll.disabled) {
+        buttonCreateTPRoll.disabled = false;
     }
 }
 
@@ -1112,6 +1176,24 @@ buttonHideShop.addEventListener("click", () => {
 
     masterBody.classList = "";
 })
+
+buttonIncreasePrice.addEventListener("click", ()=> {
+    if (MARKETING_DATA.productInteresed > 0) {
+        raisePricePerRoll()
+    }
+})
+buttonDecreasePrice.addEventListener("click", ()=> {
+    if (PRICE_PER_ROLL > 0) {
+        lowerPricePerRoll()
+    }
+})
+buttonCreateTPRoll.addEventListener("click", ()=> {
+    if (PLAYER_DATA.tpRolls < calcTPStorageTotal()) {
+        createTPRoll(1);
+    }
+})
+
+
 
 // EVENTLISTENERS
 // GAME STARTUP

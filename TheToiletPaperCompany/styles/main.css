@@ -1,5 +1,12 @@
 main {
-    margin: auto;
+    margin: 0 auto;
+    flex-basis: auto;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 section#vc--clicker,
@@ -22,11 +29,20 @@ VIEW CLICKER
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    min-width: 100%;
+    flex-basis: auto;
+    flex: 1;
+}
+#price-per-roll-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 #vc--clicker > #display--tp-roll--container {
-    background-color: rgba(242,242,238, .6);
+    background-color: rgba(242,242,238, .4);
     border-radius: 50%;
-    padding: calc(2em + 5px) 2em calc(2em - 5px) 2em;
+    padding: calc(3em + 5px) 3em calc(3em - 5px) 3em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -50,6 +66,11 @@ VIEW CLICKER
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: color .3s ease-in-out, transform .1s ease-in-out;
+}
+#vc--clicker > #display--tp-roll--container > button:disabled {
+    transform: scale(1.35);
+    filter: grayscale();
 }
 #vc--clicker > #display--tp-roll--container > button > img {
     object-fit: none;
@@ -153,7 +174,141 @@ VIEW FARM
     object-position: -256px 0;
 }
 
+/*
+VIEW SHOP
+*/
 
+#display--shop--products {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+#display--shop--products > li {
+    background: url("../assets/spritesheet_icons.png") -512px -64px;
+    width: 512px;
+    height: 192px;
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.25em;
+}
+#display--shop--products > li > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 100%;
+    position: relative;
+}
+#display--shop--products > li > div:last-child {
+    margin-left: 1em;
+    width: 100%;
+}
+#display--shop--products > li > div > img {
+    width: 64px;
+    height: 64px;
+    object-fit: none;
+    z-index: 10;
+    margin: calc((100px - 64px) / 2);
+}
+#display--shop--products > li > div > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: url("../assets/spritesheet_icons.png") -384px -256px;
+    z-index: 8;
+}
+#display--shop--products > li > div > button {
+    margin-top: auto;
+    margin-left: auto;
+    background: url("../assets/spritesheet_icons.png") -257px -385px;
+    min-width: 100px;
+    max-width: 100px;
+    height: 44px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    outline: none;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    font-size: .75em;
+}
+#display--shop--products > li > div > button:disabled {
+    filter: grayscale();
+}
+#display--shop--products > li > div > h3 {
+    line-height: 1.5em;
+    color: var(--brown-shade1)
+}
+#display--shop--products > li > div > p {
+    color: black;
+    font-weight: 400;
+}
+#display--shop--products > li > div > p:last-child {
+    margin-top: auto;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: .75em;
+    min-width: 100px;
+    max-width: 100px;
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: url("../assets/spritesheet_icons.png") -257px -385px;
+    filter: hue-rotate(120deg);
+}
+#display--shop--products > li > div > p:last-child > span {
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+.add-tree {
+    object-position: -256px 0;
+}
+.add-factory {
+    object-position: -576px 0;
+}
+.upgrade-factory {
+    object-position: -640px 0;
+}
+.upgrade-treestorage {
+    object-position: -704px 0;
+}
+.upgrade-tpstorage {
+    object-position: -768px 0;
+}
+.renewable-resources {
+    object-position: -1024px 0;
+}
+.marketing-colorfull {
+    object-position: -192px 0;
+    filter: saturate(300%) hue-rotate(200deg);
+}
+.marketing-multisheet {
+    object-position: -960px 0;
+}
+.tp-pack {
+    object-position: -896px 0;
+}
+.add-treefarm {
+    object-position: 0 0;
+}
+.upgrade-treefarm {
+    object-position: -832px 0;
+}
 
 /*
 GAME STATUS BAR
@@ -174,15 +329,27 @@ footer > #game--status {
 footer > #game--status > * {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: url("../assets/spritesheet_icons.png") -256px -64px;
     min-width: 256px;
     max-width: 256px;
     height: 192px;
 }
+#price-per-roll-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("../assets/spritesheet_icons.png") 0 -384px;
+    min-width: 256px;
+    max-width: 256px;
+    height: 128px;
+    color: var(--brown-shade1);
+    font-size: .85em;
+}
 #game--status > div > img {
-    margin-bottom: 1.5em;
+    margin: 1.5em 0;
 }
 
 #game--status > div > ul {
@@ -196,10 +363,12 @@ footer > #game--status > * {
     text-shadow: none;
 }
 #game--status > div span,
-#game--status > div > ul > li > span {
+#game--status > div > ul > li > span,
+#display--price--per-roll {
     color: white;
     text-shadow: 0 0 1px var(--blue-shade3);
     padding: 0 0 0 .5em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
 }
 #price-per-roll-container > p {
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
@@ -207,13 +376,9 @@ footer > #game--status > * {
     width: 100%;
     text-align: center;
 }
-#display--price--per-roll {
-    margin: 0 1em;
-    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-}
 
 footer > button {
-    background: url("../assets/spritesheet_icons.png") 0 -64px;
+    background: url("../assets/spritesheet_icons.png") -257px -448px;
     min-width: 256px;
     max-width: 256px;
     height: 64px;
@@ -223,7 +388,7 @@ footer > button {
     outline: 0;
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
     font-size: .8em;
-    color: var(--brown-shade1)
+    color: white;
 }
 
 #status--container--money > img,
@@ -236,8 +401,6 @@ footer > button {
     object-fit: none;
     margin-bottom: .5em;
 }
-
-
 #status--container--money > img {
     object-position: -448px 0;
 }
@@ -254,10 +417,53 @@ footer > button {
     object-position: -384px 0;
 }
 
+#game--datetime--display,
+#game--datetime--controls,
+#game--price--controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#game--datetime--controls > button,
+#game--price--controls > button {
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    background: url("../assets/spritesheet_icons.png") -192px -128px;
+    border: 0;
+    outline: none;
+    max-width: 64px;
+    min-width: 64px;
+    height: 64px;
+    transform: scale(.75);
+    color: white;
+    transition: color .3s ease-in-out, transform .1s ease-in-out;
+}
+#game--datetime--controls > button:disabled,
+#game--price--controls > button:disabled {
+    transform: scale(.65);
+    filter: grayscale();
+    color: rgb(163, 163, 163);
+}
+#game--datetime--display > p > span,
+#game--datetime--controls > span {
+    padding: .6em;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    margin: 0 .5em;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+/*
 section.active button {
     padding: .75em;
     font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
@@ -279,40 +485,4 @@ section.active button:disabled {
 section.active button:active {
     transform: scale(.95);
 }
-
-
-
-#display--shop--products {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    list-style-type: none;
-}
-#display--shop--products > li {
-    width: 100%;
-    padding: 1em;
-    border-bottom: 2px solid var(--blue-shade3);
-}
-#display--shop--products > li:last-child {
-    border-bottom: none;
-}
-
-.loading-container {
-    width: 100%;
-    height: 1em;
-    transition: width .3s ease-in-out;
-    margin-top: auto;
-    border-radius: 3px;
-    padding: .125em;
-    border: 2px solid wheat;
-}
-.loading {
-    height: 100%;
-    background-color: brown;
-    transition: width .3s ease-in-out;
-    border-radius: 2px;
-}
-
-
-
+*/

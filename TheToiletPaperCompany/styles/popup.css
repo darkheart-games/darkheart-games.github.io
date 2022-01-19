@@ -13,7 +13,7 @@ aside#display--popup.hide {
     right: 0;
     bottom: 0;
     z-index: 15;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(49, 28, 7, 0.85);
 }
 aside#display--popup.show {
     animation: fadeIn .7s ease-in-out;
@@ -41,36 +41,74 @@ aside#display--popup.hide {
 
 #display--popup--container {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+#display--popup--container-wrapper {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: white;
-    border-radius: 8px;
-    padding: 1em;
+    margin: .5em;
 }
-#display--popup--container > h2 {
+#display--popup--container--img-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 256px;
+    height: 256px;
+    margin: .5em;
+    background: url("../assets/spritesheet_icons.png") -1088px -256px;
+}
+#display--popup--container--text-wrapper {
+    background: url("../assets/spritesheet_icons.png") -640px -256px;
+    padding: 2em;
+    width: 448px;
+    height: 256px;
+}
+#display--popup--container--controls-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 448px;
+    margin-top: 1em;
+}
+#display--popup--container--text-wrapper > h2 {
     width: 100%;
     line-height: 1.5em;
+    color: var(--brown-shade1);
+    font-size: 1.25em;
 }
-#display--popup--container > p {
+#display--popup--container--text-wrapper > p {
     width: 100%;
     line-height: 1.5em;
     padding: .8em 0;
     text-align: justify;
+    font-weight: 400;
 }
-#display--popup--container > button {
-    margin-left: auto;
-    padding: .75em;
-    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-    border-radius: 5px;
+#display--popup--container--controls-wrapper > button {
+    background: url("../assets/spritesheet_icons.png") -192px -128px;
+    min-width: 64px;
+    max-width: 64px;
+    height: 64px;
+    padding: 0;
+    margin: 0;
     border: 0;
-    outline: none;
-    color: black;
-    background-color: var(--green-shade2);
-    transition: background-color .3s ease-in-out, color .4s ease-in-out, transform .1s ease-in-out;
+    outline: 0;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    color: white;
 }
-#display--popup--container > img + h2{
-    margin-top: .5em;
-    padding-top: .5em;
-    border-top: 1px solid var(--blue-shade3);
+
+#display--popup--container--img-wrapper > img {
+    width: 128px;
+    height: 128px;
+    object-fit: none;
+}
+
+.tp-roll {
+    object-position: 0 0;
 }

@@ -3,7 +3,7 @@
     <head>
         <title>The Toilet Paper Company</title>
         <meta charset="UTF-8" />
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
         <link href="./styles/variables.css" rel="stylesheet" />
         <link href="./styles/reset.css" rel="stylesheet" />
@@ -36,17 +36,17 @@
         <main>
             <section id="vc--clicker" class="active">
                 <div id="display--tp-roll--container">
-                    <button class="img-btn" onclick="createTPRoll(1)">
+                    <button id="btn--create-tpr" class="img-btn">
                         <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     </button>
                 </div>
                 <div>
                     <div id="price-per-roll-container">
                         <p>Price per Roll</p>
-                        <div id="game--datetime--controls">
-                            <button onclick="lowerPricePerRoll()">lower</button>
+                        <div id="game--price--controls">
+                            <button id="btn--decrease-price">&lt;</button>
                             <p><span id="display--price--per-roll"></span></p>
-                            <button onclick="raisePricePerRoll()">raise</button>
+                            <button id="btn--increase-price">&gt;</button>
                         </div>
                     </div>
                     
@@ -86,11 +86,11 @@
                         <li>Marketing<span id="status--product-interest">80%</span></li>
                     </ul>
                 </div>
-                <div id="status--container--tprolls">
+                <div id="status--container--trees">
                     <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
-                        <li>Total<span id="status--rolls-total">222</span></li>
-                        <li>Rolls<span id="display--storage--tp">256</span></li>
+                        <li>Trees<span id="display--storage--trees">222</span></li>
+                        <li>Rolls<span id="display--possible-rolls">2</span></li>
                     </ul>
                 </div>
                 <div id="status--container--datetime">
@@ -118,11 +118,11 @@
                         <li>Level<span id="display--factories--efficiency">2</span></li>
                     </ul>
                 </div>
-                <div id="status--container--trees">
+                <div id="status--container--tprolls">
                     <img src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
                     <ul>
-                        <li>Trees<span id="display--storage--trees">222</span></li>
-                        <li>Rolls<span id="display--possible-rolls">2</span></li>
+                        <li>Total<span id="status--rolls-total">222</span></li>
+                        <li>Rolls<span id="display--storage--tp">256</span></li>
                     </ul>
                 </div>
             </div>
