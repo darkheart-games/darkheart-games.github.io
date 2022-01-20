@@ -33,9 +33,22 @@
     main {
         margin-top: 10em;
     }
+    #vc--farm > #farm-container > #farm-wrapper {
+        width: 100%;
+    }
+    #vc--farm > #farm-container > div > canvas {
+        transform: scale(.8);
+    }
+    #canvas-shadow-layer,
+    #canvas-tree-layer {
+        position: absolute;
+        left: -82px;
+        z-index: 5;
+        top: -16px;
+    }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 935px) {
     body {
         width: 34rem;
         margin: 0 auto;
@@ -54,6 +67,7 @@
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
+        width: 100%;
     }
     #farm-controls {
         flex-direction: row;
@@ -65,11 +79,18 @@
     #farm-controls > * {
         margin: 0 0;
     }
-    #vc--farm.scaleDown > #farm-container > div {
-        margin-top: -2em;
+    #vc--farm > #farm-container > #farm-wrapper {
+        margin-top: -6em;
     }
     #vc--farm > #farm-container > div > canvas {
         transform: scale(.6);
+    }
+    #canvas-shadow-layer,
+    #canvas-tree-layer {
+        position: absolute;
+        left: -210px;
+        z-index: 5;
+        top: -16px;
     }
 }
 

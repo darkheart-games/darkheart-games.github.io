@@ -18,6 +18,7 @@ section#vc--shop {
 section#vc--farm.active,
 section#vc--shop.active {
     display: block;
+    width: 100%;
 }
 
 /*
@@ -105,7 +106,11 @@ VIEW FARM
 
 #farm-container > div {
     position: relative;
-    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 #canvas-shadow-layer,
 #canvas-tree-layer {
