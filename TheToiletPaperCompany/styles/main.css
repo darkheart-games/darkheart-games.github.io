@@ -326,7 +326,6 @@ footer > #game--status {
     flex-wrap: wrap;
     padding: 1em 0;
     font-size: .85em;
-    border-bottom: 3px solid #b38d59;
     margin-bottom: 1em;
 }
 footer > #game--status > * {

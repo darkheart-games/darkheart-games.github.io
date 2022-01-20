@@ -5,6 +5,8 @@
     }
     h1 {
         font-size: 1.25em;
+        text-align: justify;
+        margin: 0 2em;
     }
     #farm-container {
         flex-direction: column-reverse;
@@ -19,6 +21,17 @@
     }
     #farm-controls > * {
         margin: 0 1em;
+    }
+
+    header {
+        position: absolute;
+        top: 0;
+        margin: 0 auto;
+        padding: 1em;
+        max-width: 100vw;
+    }
+    main {
+        margin-top: 10em;
     }
 }
 
@@ -57,5 +70,11 @@
     }
     #vc--farm > #farm-container > div > canvas {
         transform: scale(.6);
+    }
+}
+
+@media screen and (max-width: 542px) {
+    header {
+        position: relative;
     }
 }
