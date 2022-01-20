@@ -62,6 +62,8 @@ let GAME_EVENTS = [
             MARKETING_DATA.multiplier -= .35;
         },
         img: "tp-roll",
+        effect: "+35% Marketing",
+        effectClass: "positive",
         title: "Top Christmas Present",
         description: "Toilet Paper is on the top of the most wanted christmas presents this year. You need it probably every day, so why don't you gift it to your loved ones?"
     },
@@ -77,6 +79,8 @@ let GAME_EVENTS = [
             MARKETING_DATA.multiplier -= .35;
         },
         img: "tp-roll",
+        effect: "+35% Marketing",
+        effectClass: "positive",
         title: "Pandemic - People horde Toilet Paper",
         description: "The C-Virus hit the world. Everyone tries to hoard as much toilet paper as they can get. The needs for toilet paper are higher than usual."
     },
@@ -92,6 +96,8 @@ let GAME_EVENTS = [
             MARKETING_DATA.multiplier -= .1;
         },
         img: "tp-roll",
+        effect: "+10% Marketing",
+        effectClass: "positive",
         title: "Halloween - TP-ing Pranks",
         description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
     }
@@ -408,6 +414,7 @@ const resetData = () => {
     localStorage.removeItem("SHOP_PRODUCTS");
     localStorage.removeItem("FARM_DATA");
     localStorage.removeItem("GAME_PAUSED");
+    localStorage.removeItem("smallScreenSize")
     location.reload();
 }
 
@@ -936,18 +943,27 @@ const showEventPopup = gameEvent => {
         content += `
             <div id="display--popup--container--img-wrapper">
                 <img class="${gameEvent.img}" src="assets/spritesheet_events.png" alt="Event Spritesheet">
+                <p class="${gameEvent.effectClass}">${gameEvent.effect}</p>
             </div>
         `;
     }
     content += `
         <div id="display--popup--container-wrapper">
+            <button onclick="hidePopup()">X</button>
             <div id="display--popup--container--text-wrapper">
                 <h2>${gameEvent.title}</h2>
                 <p>${gameEvent.description}</p>
-            </div>
-            <div id="display--popup--container--controls-wrapper">
-                <button onclick="hidePopup()">Ok</button>
-            </div>
+            </div>`;
+
+    if (gameEvent.startDate != null) {
+        content += `
+                <div id="display--popup--container--controls-wrapper">
+                    <div>${readableDateString(gameEvent.startDate)}</div>
+                    <div>${readableDateString(gameEvent.endDate)}</div>
+                </div>`;
+    }
+
+    content += `
         </div>
     `;
     displayPopupContainer.innerHTML = content;
@@ -1255,6 +1271,20 @@ const updateLoop = () => {
             createTPRoll(SHOP_PRODUCTS[1].quantity * EQUIPMENT_DATA.multiplier)
         }
             
+    }
+
+    // show popup if the screensize is to small
+    if (window.innerWidth < 542 && localStorage.getItem("smallScreenSize") != 1) {
+        showEventPopup({
+            startDate: null,
+            endDate: null,
+            img: null,
+            effect: "",
+            effectClass: "",
+            title: "Screen Size to small",
+            description: "Your screen width is a to small to get the best expirience. If you are on a mobile device, try to switch to landscape mode.<br>This is just a tip, you can still play the game on the small screen size."
+        })
+        localStorage.setItem("smallScreenSize", 1)
     }
 
     setTimeout(updateLoop, 1000 / SETTINGS.daySpeed);

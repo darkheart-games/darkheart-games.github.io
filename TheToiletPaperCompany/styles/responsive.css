@@ -1,0 +1,61 @@
+@media screen and (max-width: 1365px) {
+    body {
+        width: 50rem;
+        margin: 0 auto;
+    }
+    h1 {
+        font-size: 1.25em;
+    }
+    #farm-container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2em;
+    }
+    #farm-controls {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #farm-controls > * {
+        margin: 0 1em;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    body {
+        width: 34rem;
+        margin: 0 auto;
+    }
+    h1 {
+        font-size: .9em;
+    }   
+    #vc--clicker {
+        min-height: 500px;
+    }
+    #price-per-roll-container {
+        bottom: 0;
+        right: calc((100% - 256px) / 2);
+    }
+    #farm-container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    #farm-controls {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 100vw;
+    }
+    #farm-controls > * {
+        margin: 0 0;
+    }
+    #vc--farm.scaleDown > #farm-container > div {
+        margin-top: -2em;
+    }
+    #vc--farm > #farm-container > div > canvas {
+        transform: scale(.6);
+    }
+}
