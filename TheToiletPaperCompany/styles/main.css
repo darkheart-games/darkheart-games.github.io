@@ -117,7 +117,7 @@ VIEW FARM
     position: absolute;
     left: 0;
     z-index: 5;
-    top: -16px;
+    top: 64px;
 }
 #canvas-tree-layer {
     z-index: 6;
@@ -308,7 +308,8 @@ VIEW SHOP
 .marketing-multisheet {
     object-position: -960px 0;
 }
-.tp-pack {
+.tp-pack,
+.img-tprolls {
     object-position: -896px 0;
 }
 .add-treefarm {
@@ -408,10 +409,12 @@ footer > button {
     object-fit: none;
     margin-bottom: .5em;
 }
-#status--container--money > img {
+#status--container--money > img,
+.img-money {
     object-position: -448px 0;
 }
-#status--container--tprolls > img {
+#status--container--tprolls > img,
+.img-tproll {
     object-position: -192px 0;
 }
 #status--container--datetime > img {

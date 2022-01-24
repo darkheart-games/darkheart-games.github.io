@@ -1,10 +1,8 @@
 // CANVAS SETUP
 
 const worldLayer = document.getElementById("canvas-world-layer");
-const shadowLayer = document.getElementById("canvas-shadow-layer");
 const treeLayer = document.getElementById("canvas-tree-layer");
 const ctx_worldLayer = worldLayer.getContext("2d");
-const ctx_shadowLayer = shadowLayer.getContext("2d");
 const ctx_treeLayer = treeLayer.getContext("2d");
 const tilesize = 64;
 
@@ -13,6 +11,7 @@ const tilesize = 64;
 
 let DATETIME = {
     date: new Date(2019, 11, 1, 0, 0, 0, 0),
+    endDate: new Date(2024, 11, 1, 0, 0, 0, 0),
     time: 120,
     maxSecondsPerDay: 120
 }
@@ -36,9 +35,10 @@ let EQUIPMENT_DATA = {
 }
 
 let PLAYER_DATA = {
-    globalTPRolls: 1_000_000,
-    tpRolls: 0,
-    money: 1_000_000,
+    globalTPRolls: 1_000_000_000,
+    tpRolls: 1_000_000_000,
+    globalMoney: 1_000_000_000,
+    money: 1_000_000_000,
     rollsFromTree: 1600
 }
 
@@ -51,8 +51,23 @@ let GAME_PAUSED = false;
 
 let GAME_EVENTS = [
     {
+        startDate: new Date(2019, 11, 2, 0, 0, 0, 0),
+        endDate: new Date(2019, 11, 3, 0, 0, 0, 0),
+        startEvent: () => {
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+        },
+        img: "event-calendar",
+        effect: "",
+        effectClass: "",
+        title: "Help",
+        description: "This game containes in game events where the game pauses to read the event description. This events can have all kind of stuff, Marketing could be increased or decreased, etc..<br>The blue fields below shows you the start and end date."
+    },
+    {
         startDate: new Date(2019, 11, 18, 0, 0, 0, 0),
-        endDate: new Date(2020, 11, 25, 0, 0, 0, 0),
+        endDate: new Date(2019, 11, 25, 0, 0, 0, 0),
         startEvent: () => {
             MARKETING_DATA.multiplier += .35;
         },
@@ -61,7 +76,7 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .35;
         },
-        img: "tp-roll",
+        img: "event-christmas",
         effect: "+35% Marketing",
         effectClass: "positive",
         title: "Top Christmas Present",
@@ -78,7 +93,7 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .35;
         },
-        img: "tp-roll",
+        img: "event-tprolls",
         effect: "+35% Marketing",
         effectClass: "positive",
         title: "Pandemic - People horde Toilet Paper",
@@ -95,7 +110,75 @@ let GAME_EVENTS = [
         endEvent: () => {
             MARKETING_DATA.multiplier -= .1;
         },
-        img: "tp-roll",
+        img: "event-halloween",
+        effect: "+10% Marketing",
+        effectClass: "positive",
+        title: "Halloween - TP-ing Pranks",
+        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
+    },
+    {
+        startDate: new Date(2021, 9, 26, 0, 0, 0, 0),
+        endDate: new Date(2021, 10, 1, 0, 0, 0, 0),
+        startEvent: () => {
+            MARKETING_DATA.multiplier += .1;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+            MARKETING_DATA.multiplier -= .1;
+        },
+        img: "event-halloween",
+        effect: "+10% Marketing",
+        effectClass: "positive",
+        title: "Halloween - TP-ing Pranks",
+        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
+    },
+    {
+        startDate: new Date(2022, 9, 26, 0, 0, 0, 0),
+        endDate: new Date(2022, 10, 1, 0, 0, 0, 0),
+        startEvent: () => {
+            MARKETING_DATA.multiplier += .1;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+            MARKETING_DATA.multiplier -= .1;
+        },
+        img: "event-halloween",
+        effect: "+10% Marketing",
+        effectClass: "positive",
+        title: "Halloween - TP-ing Pranks",
+        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
+    },
+    {
+        startDate: new Date(2023, 9, 26, 0, 0, 0, 0),
+        endDate: new Date(2023, 10, 1, 0, 0, 0, 0),
+        startEvent: () => {
+            MARKETING_DATA.multiplier += .1;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+            MARKETING_DATA.multiplier -= .1;
+        },
+        img: "event-halloween",
+        effect: "+10% Marketing",
+        effectClass: "positive",
+        title: "Halloween - TP-ing Pranks",
+        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
+    },
+    {
+        startDate: new Date(2024, 9, 26, 0, 0, 0, 0),
+        endDate: new Date(2024, 10, 1, 0, 0, 0, 0),
+        startEvent: () => {
+            MARKETING_DATA.multiplier += .1;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+            MARKETING_DATA.multiplier -= .1;
+        },
+        img: "event-halloween",
         effect: "+10% Marketing",
         effectClass: "positive",
         title: "Halloween - TP-ing Pranks",
@@ -136,7 +219,7 @@ let SHOP_PRODUCTS = [
     },
     {
         id: 3,
-        isVisible: 500,
+        isVisible: 1000,
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Tree Storage 1",
@@ -146,42 +229,42 @@ let SHOP_PRODUCTS = [
     },
     {
         id: 4,
-        isVisible: 1000,
+        isVisible: 5000,
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Tree Storage 2",
         description: "Store more trees.",
-        price: 300.00,
+        price: 400.00,
         icon: "upgrade-treestorage"
     },
     {
         id: 5,
-        isVisible: 3000,
+        isVisible: 15000,
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Tree Storage 3",
-        description: "Store more trees.",
-        price: 500.00,
-        icon: "upgrade-treestorage"
-    },
-    {
-        id: 6,
-        isVisible: 5000,
-        maxQuantity: 1,
-        quantity: 0,
-        name: "Upgrade Tree Storage 4",
         description: "Store more trees.",
         price: 1000.00,
         icon: "upgrade-treestorage"
     },
     {
+        id: 6,
+        isVisible: 50000,
+        maxQuantity: 1,
+        quantity: 0,
+        name: "Upgrade Tree Storage 4",
+        description: "Store more trees.",
+        price: 5000.00,
+        icon: "upgrade-treestorage"
+    },
+    {
         id: 7,
-        isVisible: 1000,
+        isVisible: 100,
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 1",
         description: "Store more trees.",
-        price: 200.00,
+        price: 100.00,
         icon: "upgrade-tpstorage"
     },
     {
@@ -191,7 +274,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 2",
         description: "Store more trees.",
-        price: 250.00,
+        price: 400.00,
         icon: "upgrade-tpstorage"
     },
     {
@@ -201,7 +284,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 3",
         description: "Store more trees.",
-        price: 400.00,
+        price: 800.00,
         icon: "upgrade-tpstorage"
     },
     {
@@ -211,7 +294,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 4",
         description: "Store more trees.",
-        price: 750.00,
+        price: 1500.00,
         icon: "upgrade-tpstorage"
     },
     {
@@ -226,7 +309,7 @@ let SHOP_PRODUCTS = [
     },
     {
         id: 12,
-        isVisible: 500,
+        isVisible: 1000,
         maxQuantity: 1,
         quantity: 0,
         name: "Colorfull Rolls",
@@ -236,7 +319,7 @@ let SHOP_PRODUCTS = [
     },
     {
         id: 13,
-        isVisible: 1500,
+        isVisible: 5000,
         maxQuantity: 1,
         quantity: 0,
         name: "Multi Sheet ply",
@@ -246,22 +329,22 @@ let SHOP_PRODUCTS = [
     },
     {
         id: 14,
-        isVisible: 10000,
+        isVisible: 25000,
         maxQuantity: 1,
         quantity: 0,
         name: "Toilet Paper Multi Pack 8",
         description: "Sell 8 toilet paper rolls in a pack to get more sales.",
-        price: 2500.00,
+        price: 10000.00,
         icon: "tp-pack"
     },
     {
         id: 15,
-        isVisible: 20000,
+        isVisible: 100000,
         maxQuantity: 1,
         quantity: 0,
         name: "Toilet Paper Multi Pack 12",
         description: "Sell 12 toilet paper rolls in a pack to get more sales.",
-        price: 5000.00,
+        price: 20000.00,
         icon: "tp-pack"
     },
     {
@@ -281,27 +364,17 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Tree Farm Upgrade 1",
         description: "You are able to plant 10 trees.",
-        price: 6000.00,
+        price: 2000.00,
         icon: "upgrade-treefarm"
     },
     {
         id: 18,
-        isVisible: 30000,
-        maxQuantity: 1,
-        quantity: 0,
-        name: "Tree Farm Upgrade 2",
-        description: "You are able to plant 25 trees.",
-        price: 9000.00,
-        icon: "upgrade-treefarm"
-    },
-    {
-        id: 19,
         isVisible: 50000,
         maxQuantity: 1,
         quantity: 0,
-        name: "Tree Farm Upgrade 3",
-        description: "You are able to plant 50 trees.",
-        price: 14000.00,
+        name: "Tree Farm Upgrade 2",
+        description: "You are able to plant 20 trees.",
+        price: 4000.00,
         icon: "upgrade-treefarm"
     }
 ]
@@ -345,7 +418,6 @@ const displayFarmContainer = document.getElementById("farm-container");
 
 const spritesheetGround = document.getElementById("spritesheet-ground");
 const spritesheetTrees = document.getElementById("spritesheet-trees");
-const spritesheetShadow = document.getElementById("spritesheet-shadow");
 
 const vcClicker = document.getElementById("vc--clicker");
 const vcFarm = document.getElementById("vc--farm");
@@ -418,6 +490,42 @@ const resetData = () => {
     location.reload();
 }
 
+const endGame = () => {
+    GAME_PAUSED = true;
+    displayPopup.classList = "show";
+
+    let content = `
+            <div id="display--end--container-wrapper">
+                <h2>You've made it!</h2>
+                <div>
+                    <div>
+                        <img class="img-money" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                        <p>Total Money:</p>
+                        <p>${readableNumber(PLAYER_DATA.globalMoney, 2, 1)}$</p>
+                    </div>
+                    <div>
+                        <img class="img-money" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                        <p>Money left:</p>
+                        <p>${readableNumber(PLAYER_DATA.money, 2, 1)}$</p>
+                    </div>
+                    <div>
+                        <img class="img-tprolls" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                        <p>Total Rolls:</p>
+                        <p>${readableNumber(PLAYER_DATA.globalTPRolls, 0, 1)}</p>
+                    </div>
+                    <div>
+                        <img class="img-tprolls" src="assets/spritesheet_icons.png" alt="Icons Spritesheet" />
+                        <p>Rolls left:</p>
+                        <p>${readableNumber(PLAYER_DATA.tpRolls, 0, 1)}</p>
+                    </div>
+                </div>
+                <button onclick="resetData()">Finish</button>
+        </div>
+    `;
+
+    displayPopupContainer.innerHTML = content;
+}
+
 const readableDateString = date => {
     return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 }
@@ -426,12 +534,21 @@ const readableNumber = (num, dec, roundDec) => {
     let formatedNumber;
     
     switch (true) {
-        case num / 1000000 > 0.999:
-            formatedNumber = Math.round((num / 1000000 + Number.EPSILON) * 100) / 100;
-            return `${formatedNumber.toFixed(roundDec)}M`;
-        case num / 1000 > 0.999:
-            formatedNumber = Math.round((num / 1000 + Number.EPSILON) * 100) / 100;
-            return `${formatedNumber.toFixed(roundDec)}k`;
+        case num / 1_000_000_000_000_000 > 0.999:
+            formatedNumber = Math.round((num / 1_000_000_000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}q`;
+        case num / 1_000_000_000_000 > 0.999:
+            formatedNumber = Math.round((num / 1_000_000_000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}t`;
+        case num / 1_000_000_000 > 0.999:
+            formatedNumber = Math.round((num / 1_000_000_000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}b`;
+        case num / 1_000_000 > 0.999:
+            formatedNumber = Math.round((num / 1_000_000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}m`;
+        case num / 1_000 > 0.999:
+            formatedNumber = Math.round((num / 1_000 + Number.EPSILON) * 100) / 100;
+            return `${formatedNumber.toFixed(roundDec)}K`;
         default:
             formatedNumber = Math.round((num + Number.EPSILON) * 100) / 100;
             return `${formatedNumber.toFixed(dec)}`;
@@ -517,8 +634,10 @@ const removeMoney = amount => {
 }
 
 const addMoney = amount => {
-    PLAYER_DATA.money += amount
+    PLAYER_DATA.money += amount;
     PLAYER_DATA.money = Math.round((PLAYER_DATA.money + Number.EPSILON) * 100) / 100;
+    PLAYER_DATA.globalMoney += amount;
+    PLAYER_DATA.globalMoney = Math.round((PLAYER_DATA.globalMoney + Number.EPSILON) * 100) / 100;
 }
 
 const buyProduct = productID => {
@@ -559,7 +678,8 @@ const plantTrees = amount => {
     if (FARM_DATA.treeData.length + amount <= getFarmSpaces() && amount * 100 <= PLAYER_DATA.money) {
         for (let i = 0; i < amount; i++) {
             const tree = {
-                plantDay: new Date(DATETIME.date)
+                plantDay: new Date(DATETIME.date),
+                type: Math.floor(Math.random() * 2)
             }
             FARM_DATA.treeData.push(tree);
             PLAYER_DATA.money -= 100;
@@ -588,20 +708,7 @@ const getFarmSlots = () => {
     let spaces = [];
 
     switch (FARM_DATA.lvl) {
-        case 0: 
-            spaces = [
-                [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
-                [20,22, 2, 2, 2,21, 2, 2,22, 2, 2, 2, 1,23],
-                [28, 2, 2, 2, 2, 2, 2, 2, 2, 2,21, 2, 2,31],
-                [20,22, 2, 2, 2, 2, 2,21, 2, 2, 2, 0, 2,23],
-                [28, 2, 2, 2,22, 2, 2,29, 2, 2, 2, 2,22,31],
-                [20,30, 2, 2, 1,21, 2,22, 2, 2,22, 2, 2,31],
-                [20,21,22, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,23],
-                [28, 1, 2, 2,22, 2, 2, 2, 2,21,30,22,21,31],
-                [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
-            ]
-            break;
-        case 1:
+        case 0:
             spaces = [
                 [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
                 [20, 8, 9,10, 9, 9,10,11,22, 2, 2, 2, 1,23],
@@ -614,7 +721,7 @@ const getFarmSlots = () => {
                 [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
             ]
             break;
-        case 2:
+        case 1:
             spaces = [
                 [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
                 [20, 8, 9,10, 9, 9,10,10, 9,10, 9,10,11,23],
@@ -627,7 +734,7 @@ const getFarmSlots = () => {
                 [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
             ]
             break;
-        case 3:
+        case 2:
             spaces = [
                 [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
                 [20, 8, 9,10, 9, 9,10,10, 9,10, 9,10,11,23],
@@ -640,7 +747,7 @@ const getFarmSlots = () => {
                 [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
             ]
             break;
-        case 4:
+        case 3:
             spaces = [
                 [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
                 [20, 8, 9,10, 9, 9,10,10, 9,10, 9,10,11,23],
@@ -650,6 +757,20 @@ const getFarmSlots = () => {
                 [20,16, 3, 3,26, 3, 3, 3, 3, 3, 3, 3,27,31],
                 [20,16, 3, 3,18, 3, 3,25, 3, 3,18, 3,27,23],
                 [28,32,33,33,34,33,34,34,33,34,33,34,35,31],
+                [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
+            ]
+            break;
+        case 4: 
+            // disabled lvl
+            spaces = [
+                [12,13,14,13,13,14,14,13,13,14,13,14,14,15],
+                [20,22, 2, 2, 2,21, 2, 2,22, 2, 2, 2, 1,23],
+                [28, 2, 2, 2, 2, 2, 2, 2, 2, 2,21, 2, 2,31],
+                [20,22, 2, 2, 2, 2, 2,21, 2, 2, 2, 0, 2,23],
+                [28, 2, 2, 2,22, 2, 2,29, 2, 2, 2, 2,22,31],
+                [20,30, 2, 2, 1,21, 2,22, 2, 2,22, 2, 2,31],
+                [20,21,22, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,23],
+                [28, 1, 2, 2,22, 2, 2, 2, 2,21,30,22,21,31],
                 [36,37,38,37,37,38,38,37,37,37,38,37,38,39]
             ]
             break;
@@ -706,7 +827,6 @@ const renderFarm = () => {
 
     if (spaces.length > 0) {
         ctx_worldLayer.clearRect(0, 0, worldLayer.width, worldLayer.height);
-        ctx_shadowLayer.clearRect(0, 0, treeLayer.width, treeLayer.height);
         ctx_treeLayer.clearRect(0, 0, treeLayer.width, treeLayer.height);
 
         let treeCounter = 0;
@@ -716,7 +836,7 @@ const renderFarm = () => {
 
                 ctx_worldLayer.drawImage(spritesheetGround, getCurrentGroundTileXY(spaces[y][x])[0], getCurrentGroundTileXY(spaces[y][x])[1], tilesize, tilesize, x * tilesize, y * tilesize, tilesize, tilesize);
 
-                if (y > 0 && y < spaces.length - 3 && x > 1 && x < spaces[y].length - 2 && FARM_DATA.treeData[treeCounter] != undefined) {
+                if (y >= 0 && y * 2 < spaces.length - 2 && x > 0 && x * 2 < spaces[y].length - 2 && FARM_DATA.treeData[treeCounter] != undefined) {
                     let treeX = 0;
 
                     switch(true) {
@@ -724,17 +844,16 @@ const renderFarm = () => {
                             treeX = 0;
                             break;
                         case daysLeftTillHarvest(treeCounter) >= 4:
-                            treeX = tilesize;
-                            break;
-                        case daysLeftTillHarvest(treeCounter) >= 0:
                             treeX = tilesize * 2;
                             break;
+                        case daysLeftTillHarvest(treeCounter) >= 1:
+                            treeX = tilesize * 4;
+                            break;
                         default:
-                            treeX = tilesize * 3;
+                            treeX = tilesize * 6;
                     }
                     
-                    ctx_shadowLayer.drawImage(spritesheetShadow, treeX, 0, tilesize, tilesize * 2, x * tilesize, y * tilesize, tilesize, tilesize * 2);
-                    ctx_treeLayer.drawImage(spritesheetTrees, treeX, 0, tilesize, tilesize * 2, x * tilesize, y * tilesize, tilesize, tilesize * 2);
+                    ctx_treeLayer.drawImage(spritesheetTrees, treeX, tilesize * 2 * FARM_DATA.treeData[treeCounter].type, tilesize * 2, tilesize * 2, x * tilesize * 2, y * tilesize * 1.5, tilesize * 2, tilesize * 2);
                     treeCounter += 1;
                 }
 
@@ -904,9 +1023,9 @@ const calcTPStorageTotal = () => {
 
     switch (totalLvl) {
         case 0:
-            return 1000;
+            return 100;
         case 1:
-            return 2500;
+            return 1000;
         case 2:
             return 10000;
         case 3:
@@ -933,6 +1052,10 @@ const newDay = () => {
     checkProductInterest();
     updateShopDisplay();
     renderFarm();
+
+    if (DATETIME.endDate - DATETIME.date == 0) {
+        endGame();
+    }
 }
 
 const showEventPopup = gameEvent => {
@@ -958,9 +1081,14 @@ const showEventPopup = gameEvent => {
     if (gameEvent.startDate != null) {
         content += `
                 <div id="display--popup--container--controls-wrapper">
-                    <div>${readableDateString(gameEvent.startDate)}</div>
-                    <div>${readableDateString(gameEvent.endDate)}</div>
-                </div>`;
+                    <div>${readableDateString(gameEvent.startDate)}</div>`
+
+        if (gameEvent.endDate != null) {
+            content += `
+                    <div>${readableDateString(gameEvent.endDate)}</div>`;
+        }
+
+        content += `</div>`;
     }
 
     content += `
@@ -1217,15 +1345,24 @@ buttonCreateTPRoll.addEventListener("click", ()=> {
 const gameStart = () => {
     worldLayer.width = 14 * tilesize;
     worldLayer.height = 9 * tilesize;
-    shadowLayer.width = 14 * tilesize;
-    shadowLayer.height = 9 * tilesize;
     treeLayer.width = 14 * tilesize;
     treeLayer.height = 9 * tilesize;
 
     if (loadData()) {
-        console.log("Game loaded successfully")
+        console.log("Game loaded successfully!");
     } else {
         console.log("No save data found or save data is corrupted!");
+        showEventPopup(
+            {
+                startDate: null,
+                endDate: null,
+                img: null,
+                effect: "",
+                effectClass: "",
+                title: "Storytime!",
+                description: "You always wanted to start a company that produces toilet paper, it was your childhood dream job. You have found investors who give you the money to start.<br>They give you 5 years to prove to them that your company can survive.<br>Can you do it?"
+            }
+        );
     }
 
     checkProductInterest();
@@ -1234,6 +1371,8 @@ const gameStart = () => {
     renderFarm();
 
     updateShopDisplay();
+
+    checkEvents();
     
     setTimeout(updateLoop, 1000);
     setInterval(()=> {
@@ -1259,7 +1398,11 @@ const updateLoop = () => {
 
         if (PLAYER_DATA.tpRolls - MARKETING_DATA.amount >= 0) {
             if (Math.random() * 100 <= MARKETING_DATA.productInteresed) {
-                sellTPRoll(MARKETING_DATA.amount);
+                if (MARKETING_DATA.amount * Math.round(MARKETING_DATA.productInteresed / 100) > PLAYER_DATA.tpRolls) {
+                    sellTPRoll(PLAYER_DATA.tpRolls);
+                } else {
+                    sellTPRoll(MARKETING_DATA.amount * Math.round(MARKETING_DATA.productInteresed / 100));
+                }
             }
         } else if (PLAYER_DATA.tpRolls - MARKETING_DATA.multiplier >= 0) {
             if (Math.random() * 100 <= MARKETING_DATA.productInteresed) {
@@ -1270,21 +1413,21 @@ const updateLoop = () => {
         if (SHOP_PRODUCTS[1].quantity > 0) {
             createTPRoll(SHOP_PRODUCTS[1].quantity * EQUIPMENT_DATA.multiplier)
         }
-            
-    }
 
-    // show popup if the screensize is to small
-    if (window.innerWidth < 542 && localStorage.getItem("smallScreenSize") != 1) {
-        showEventPopup({
-            startDate: null,
-            endDate: null,
-            img: null,
-            effect: "",
-            effectClass: "",
-            title: "Screen Size to small",
-            description: "Your screen width is a to small to get the best expirience. If you are on a mobile device, try to switch to landscape mode.<br>This is just a tip, you can still play the game on the small screen size."
-        })
-        localStorage.setItem("smallScreenSize", 1)
+        // show popup if the screensize is to small
+        if (window.innerWidth < 610 && localStorage.getItem("smallScreenSize") != 1) {
+            showEventPopup({
+                startDate: null,
+                endDate: null,
+                img: null,
+                effect: "",
+                effectClass: "",
+                title: "Screen Size too small",
+                description: "Your screen width is too small to get the best experience. If you are on a mobile device, try to switch to landscape mode.<br>This is just a tip, you can still play the game on the small screen size."
+            })
+            localStorage.setItem("smallScreenSize", 1)
+        }
+            
     }
 
     setTimeout(updateLoop, 1000 / SETTINGS.daySpeed);
