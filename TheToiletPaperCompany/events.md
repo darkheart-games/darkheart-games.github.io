@@ -30,7 +30,7 @@ Title:
 The future?
 
 Description:
-Bidet's are becoming more and more popular. Could this be the and for toilet paper?
+Bidet's are becoming more and more popular. Could this be the end for toilet paper?
 
 Action Start:
 Marketing -30%
@@ -54,7 +54,7 @@ Title:
 The end of the World, almost...
 
 Description:
-The so called reveloution for toilets want's to kill you. Bidet's escaled and unite against the humanity.
+The so called revolution for toilets want's to kill you. Bidet's escaled and unite against the humanity.
 A small company ("The Toilet Paper Company"), who still managed to produce toilet paper, is now the hero of the world.
 They managed to destroy the bidet's and free the humanity.
 

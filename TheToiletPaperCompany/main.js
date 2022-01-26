@@ -11,7 +11,7 @@ const tilesize = 64;
 
 let DATETIME = {
     date: new Date(2019, 11, 1, 0, 0, 0, 0),
-    endDate: new Date(2024, 11, 1, 0, 0, 0, 0),
+    endDate: new Date(2020, 11, 1, 0, 0, 0, 0),
     time: 120,
     maxSecondsPerDay: 120
 }
@@ -35,10 +35,10 @@ let EQUIPMENT_DATA = {
 }
 
 let PLAYER_DATA = {
-    globalTPRolls: 1_000_000_000,
-    tpRolls: 1_000_000_000,
-    globalMoney: 1_000_000_000,
-    money: 1_000_000_000,
+    globalTPRolls: 0,
+    tpRolls: 0,
+    globalMoney: 0,
+    money: 0,
     rollsFromTree: 1600
 }
 
@@ -100,6 +100,38 @@ let GAME_EVENTS = [
         description: "The C-Virus hit the world. Everyone tries to hoard as much toilet paper as they can get. The needs for toilet paper are higher than usual."
     },
     {
+        startDate: new Date(2020, 4, 20, 0, 0, 0, 0),
+        endDate: null,
+        startEvent: () => {
+            MARKETING_DATA.multiplier -= .3;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+        },
+        img: "event-toilet",
+        effect: "-30% Marketing",
+        effectClass: "negative",
+        title: "The future?",
+        description: "Bidet's are becoming more and more popular. Could this be the end for toilet paper?"
+    },
+    {
+        startDate: new Date(2020, 7, 21, 0, 0, 0, 0),
+        endDate: null,
+        startEvent: () => {
+            MARKETING_DATA.multiplier += .8;
+        },
+        activeEvent: () => {
+        },
+        endEvent: () => {
+        },
+        img: "event-nobidets",
+        effect: "+80% Marketing",
+        effectClass: "positive",
+        title: "The end of the World, almost...",
+        description: "The so called revolution for toilets want's to kill you. Bidet's escaled and unite against the humanity. A small company ('The Toilet Paper Company'), who still managed to produce toilet paper, is now the hero of the world. They managed to destroy the bidet's and free the humanity."
+    },
+    {
         startDate: new Date(2020, 9, 26, 0, 0, 0, 0),
         endDate: new Date(2020, 10, 1, 0, 0, 0, 0),
         startEvent: () => {
@@ -115,75 +147,23 @@ let GAME_EVENTS = [
         effectClass: "positive",
         title: "Halloween - TP-ing Pranks",
         description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
-    },
+    }/* ,
     {
-        startDate: new Date(2021, 9, 26, 0, 0, 0, 0),
-        endDate: new Date(2021, 10, 1, 0, 0, 0, 0),
+        startDate: new Date(2020, 11, 1, 0, 0, 0, 0),
+        endDate: null,
         startEvent: () => {
-            MARKETING_DATA.multiplier += .1;
+            addMoney(5000);
         },
         activeEvent: () => {
         },
         endEvent: () => {
-            MARKETING_DATA.multiplier -= .1;
         },
-        img: "event-halloween",
-        effect: "+10% Marketing",
+        img: "event-calendar",
+        effect: "+5000$",
         effectClass: "positive",
-        title: "Halloween - TP-ing Pranks",
-        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
-    },
-    {
-        startDate: new Date(2022, 9, 26, 0, 0, 0, 0),
-        endDate: new Date(2022, 10, 1, 0, 0, 0, 0),
-        startEvent: () => {
-            MARKETING_DATA.multiplier += .1;
-        },
-        activeEvent: () => {
-        },
-        endEvent: () => {
-            MARKETING_DATA.multiplier -= .1;
-        },
-        img: "event-halloween",
-        effect: "+10% Marketing",
-        effectClass: "positive",
-        title: "Halloween - TP-ing Pranks",
-        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
-    },
-    {
-        startDate: new Date(2023, 9, 26, 0, 0, 0, 0),
-        endDate: new Date(2023, 10, 1, 0, 0, 0, 0),
-        startEvent: () => {
-            MARKETING_DATA.multiplier += .1;
-        },
-        activeEvent: () => {
-        },
-        endEvent: () => {
-            MARKETING_DATA.multiplier -= .1;
-        },
-        img: "event-halloween",
-        effect: "+10% Marketing",
-        effectClass: "positive",
-        title: "Halloween - TP-ing Pranks",
-        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
-    },
-    {
-        startDate: new Date(2024, 9, 26, 0, 0, 0, 0),
-        endDate: new Date(2024, 10, 1, 0, 0, 0, 0),
-        startEvent: () => {
-            MARKETING_DATA.multiplier += .1;
-        },
-        activeEvent: () => {
-        },
-        endEvent: () => {
-            MARKETING_DATA.multiplier -= .1;
-        },
-        img: "event-halloween",
-        effect: "+10% Marketing",
-        effectClass: "positive",
-        title: "Halloween - TP-ing Pranks",
-        description: "Halloween is near and people try to hoard toilet paper for the TP-ing pranks."
-    }
+        title: "Well done!",
+        description: "1 year is already passed and you didn't declare bankcrupcy. well done so far. Here is a bonus for your work."
+    } */
 ]
 
 let SHOP_PRODUCTS = [
@@ -334,7 +314,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Toilet Paper Multi Pack 8",
         description: "Sell 8 toilet paper rolls in a pack to get more sales.",
-        price: 10000.00,
+        price: 5000.00,
         icon: "tp-pack"
     },
     {
@@ -344,7 +324,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Toilet Paper Multi Pack 12",
         description: "Sell 12 toilet paper rolls in a pack to get more sales.",
-        price: 20000.00,
+        price: 7500.00,
         icon: "tp-pack"
     },
     {
@@ -846,11 +826,14 @@ const renderFarm = () => {
                         case daysLeftTillHarvest(treeCounter) >= 4:
                             treeX = tilesize * 2;
                             break;
-                        case daysLeftTillHarvest(treeCounter) >= 1:
+                        case daysLeftTillHarvest(treeCounter) >= 0:
                             treeX = tilesize * 4;
                             break;
-                        default:
+                        case daysLeftTillHarvest(treeCounter) < 0:
                             treeX = tilesize * 6;
+                            break;
+                        default:
+                            treeX = 0;
                     }
                     
                     ctx_treeLayer.drawImage(spritesheetTrees, treeX, tilesize * 2 * FARM_DATA.treeData[treeCounter].type, tilesize * 2, tilesize * 2, x * tilesize * 2, y * tilesize * 1.5, tilesize * 2, tilesize * 2);
@@ -1360,7 +1343,7 @@ const gameStart = () => {
                 effect: "",
                 effectClass: "",
                 title: "Storytime!",
-                description: "You always wanted to start a company that produces toilet paper, it was your childhood dream job. You have found investors who give you the money to start.<br>They give you 5 years to prove to them that your company can survive.<br>Can you do it?"
+                description: "You always wanted to start a company that produces toilet paper, it was your childhood dream job. You have found investors who give you the money to start.<br>They give you 1 year to prove to them that your company can survive.<br>Can you do it?"
             }
         );
     }
