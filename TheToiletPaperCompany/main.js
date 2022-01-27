@@ -243,7 +243,7 @@ let SHOP_PRODUCTS = [
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 1",
-        description: "Store more trees.",
+        description: "Store more toilet paper rolls.",
         price: 100.00,
         icon: "upgrade-tpstorage"
     },
@@ -253,7 +253,7 @@ let SHOP_PRODUCTS = [
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 2",
-        description: "Store more trees.",
+        description: "Store more toilet paper rolls.",
         price: 400.00,
         icon: "upgrade-tpstorage"
     },
@@ -263,7 +263,7 @@ let SHOP_PRODUCTS = [
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 3",
-        description: "Store more trees.",
+        description: "Store more toilet paper rolls.",
         price: 800.00,
         icon: "upgrade-tpstorage"
     },
@@ -273,7 +273,7 @@ let SHOP_PRODUCTS = [
         maxQuantity: 1,
         quantity: 0,
         name: "Upgrade Toilet Paper Storage 4",
-        description: "Store more trees.",
+        description: "Store more toilet paper rolls.",
         price: 1500.00,
         icon: "upgrade-tpstorage"
     },
@@ -284,7 +284,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Renewable Resources",
         description: "Get more rolls out of a tree.",
-        price: 2500.00,
+        price: 1500.00,
         icon: "renewable-resources"
     },
     {
@@ -333,8 +333,8 @@ let SHOP_PRODUCTS = [
         maxQuantity: 1,
         quantity: 0,
         name: "Tree Farm",
-        description: "Grow your own Trees and save some money. You can plant 5 trees. You can level the farm up to be able to plant more trees..",
-        price: 4000.00,
+        description: "Grow your own Trees and save some money. The farm can be leveled up to be able to place more trees.<br>Start space: 5 trees",
+        price: 2000.00,
         icon: "add-treefarm"
     },
     {
@@ -344,7 +344,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Tree Farm Upgrade 1",
         description: "You are able to plant 10 trees.",
-        price: 2000.00,
+        price: 1000.00,
         icon: "upgrade-treefarm"
     },
     {
@@ -354,7 +354,7 @@ let SHOP_PRODUCTS = [
         quantity: 0,
         name: "Tree Farm Upgrade 2",
         description: "You are able to plant 20 trees.",
-        price: 4000.00,
+        price: 2500.00,
         icon: "upgrade-treefarm"
     }
 ]
